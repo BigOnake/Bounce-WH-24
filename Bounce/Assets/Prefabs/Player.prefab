@@ -141,7 +141,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4195423543780898234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,17 +155,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 3598911219286079458}
-  playerCamera: {fileID: 0}
-  velocity: 0
-  speed: 4
-  sensitivity: 0.1
-  maxSpeed: 1
+  playerCamera: {fileID: 5811280178163052576}
+  speed: 10
+  maxSpeed: 15
   friction: 1
   jumpForce: 3
   gravity: -9.8
-  grounded: 0
+  isGrounded: 0
+  downVel: 0.2
   minYAngle: -90
   maxYAngle: 90
+  sensitivity: 0.1
   wishDir: {x: 0, y: 0, z: 0}
 --- !u!114 &2856597867722262097
 MonoBehaviour:
