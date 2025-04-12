@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8697899957349951481}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,8 +291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bf577032fc4df4ab3efee5cf193a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitByPlayerSound: {fileID: 0}
-  surfaceBounceSounds: []
+  hitByPlayerSound: {fileID: 8300000, guid: 2f66c9733daa1a14bbd02c8eed170fea, type: 3}
+  surfaceBounceSounds:
+  - {fileID: 8300000, guid: 7a111dd5bfee2d341b111e67fcb44076, type: 3}
+  - {fileID: 8300000, guid: 09130ac1ad773f34c81798dc76637e47, type: 3}
 --- !u!114 &4633536522361614704
 MonoBehaviour:
   m_ObjectHideFlags: 0
