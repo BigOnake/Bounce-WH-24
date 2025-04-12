@@ -155,10 +155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 3598911219286079458}
+  playerCamera: {fileID: 0}
+  velocity: 0
   speed: 4
   sensitivity: 0.1
   maxSpeed: 1
+  friction: 1
   jumpForce: 3
+  gravity: -9.8
+  grounded: 0
+  minYAngle: -90
+  maxYAngle: 90
+  wishDir: {x: 0, y: 0, z: 0}
 --- !u!114 &2856597867722262097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +302,7 @@ GameObject:
   - component: {fileID: 5312344388317485347}
   - component: {fileID: 4641997344218938272}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

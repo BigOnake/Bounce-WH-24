@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Values")]
     public float velocity;
     public float speed = 5f,
-                 acceleration = 0.3f,
                  sensitivity = 0.1f, 
                  maxSpeed = 10f;
     public float friction = 1f;
@@ -24,10 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxYAngle = 90f;
 
     private float lookRotation;
-    [SerializeField]
-    private float _speed;
     private Vector2 movementDirection, lookingDirection;
-    private Vector3 curVelocity, wishVelocity, velocityChange;
+    private Vector3 curVelocity, wishVelocity, acceleration;
     [SerializeField]
     private Vector3 wishDir;
     private Vector3 jumpHeight;
@@ -47,7 +44,11 @@ public class PlayerMovement : MonoBehaviour
         Look();   
     }
 
-    //---------- Movement
+    //---------- Movement -----------
+    /* TODO: 
+     * Less strafing in the air
+     * No sliding off shallow slopes
+     */
 
     private void HorizontalMovement()
     {
@@ -55,11 +56,11 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateInput();
 
-        velocityChange = (wishVelocity - curVelocity);
-        velocityChange = new Vector3(velocityChange.x, 0f, velocityChange.z);
-        velocityChange = Vector3.ClampMagnitude(velocityChange, maxSpeed); // Cap velocity
+        acceleration = (wishVelocity - curVelocity); //Acceleration
+        acceleration = new Vector3(acceleration.x, 0f, acceleration.z); //Dont apply vertical forces
+        acceleration = Vector3.ClampMagnitude(acceleration, maxSpeed); // Cap Acceleration
 
-        playerRb.AddForce(velocityChange, ForceMode.VelocityChange);
+        playerRb.AddForce(acceleration, ForceMode.VelocityChange);
         velocity = playerRb.linearVelocity.magnitude;
     }
 
