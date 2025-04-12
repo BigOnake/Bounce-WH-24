@@ -7,20 +7,23 @@ public class PlayerMovement : MonoBehaviour
     public Camera playerCamera;
 
     [Header("Movement Values")]
-    public float velocity;
-    public float speed = 5f,
-                 sensitivity = 0.1f, 
-                 maxSpeed = 10f;
-    public float friction = 1f;
+    public float displaySpeed;
+    public float speed = 5f;
+    public float maxSpeed = 10f;
 
     [Header("Jump Values")]
     public float jumpForce = 3f;
     public float gravity = -9.8f;
-    public bool grounded;
+    public bool isGrounded;
+    [Range(0f, 1f)]
+    public float airStrafingMult = 1f;
+    private float airStrafe;
+    public float downVel = 0.2f;
 
     [Header("Camera Values")]
     public float minYAngle = -90f;
     public float maxYAngle = 90f;
+    public float sensitivity = 0.1f;
 
     private float lookRotation;
     private Vector2 movementDirection, lookingDirection;
@@ -52,16 +55,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        curVelocity = playerRb.linearVelocity;
+        playerRb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
 
+        curVelocity = playerRb.linearVelocity;
         UpdateInput();
 
         acceleration = (wishVelocity - curVelocity); //Acceleration
-        acceleration = new Vector3(acceleration.x, 0f, acceleration.z); //Dont apply vertical forces
+        acceleration = new Vector3(acceleration.x, 0, acceleration.z); //Dont apply vertical forces
         acceleration = Vector3.ClampMagnitude(acceleration, maxSpeed); // Cap Acceleration
 
-        playerRb.AddForce(acceleration, ForceMode.VelocityChange);
-        velocity = playerRb.linearVelocity.magnitude;
+        if(isGrounded)
+        {
+            airStrafe = 1;
+        }
+        else
+        {
+            airStrafe = airStrafingMult;
+        }
+
+        playerRb.AddForce(acceleration * airStrafe, ForceMode.Impulse);
+
+        displaySpeed = playerRb.linearVelocity.magnitude;
     }
 
     private void UpdateInput()
@@ -74,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     private void Look()
     {
         transform.Rotate(Vector3.up * lookingDirection.x * sensitivity);
+
         lookRotation += (-lookingDirection.y * sensitivity);
         lookRotation = Mathf.Clamp(lookRotation, minYAngle, maxYAngle);
         playerCamera.transform.eulerAngles = new Vector3(lookRotation, playerCamera.transform.eulerAngles.y, playerCamera.transform.eulerAngles.z);
@@ -83,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     {
         jumpHeight = Vector3.zero;
 
-        if (grounded)
+        if (isGrounded)
         {
             jumpHeight = Vector3.up * jumpForce;
         }
@@ -108,6 +123,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetGrounded(bool state)
     {
-        grounded = state;
+        isGrounded = state;
     }
 }
