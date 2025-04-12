@@ -8,10 +8,6 @@ public class BallPhysics : MonoBehaviour
     [SerializeField] private float maxMoveSpeed = 100f;
     [SerializeField, Range(0.0f, 1.0f)] private float percentSpeedGain = 0.1f;
 
-    [Header("Audio")]
-    [SerializeField] private AudioClip hitByPlayerSound;
-    [SerializeField] private AudioClip surfaceBounceSound;
-
     private Rigidbody rb;
 
     private Vector3 moveDirection;
@@ -38,14 +34,9 @@ public class BallPhysics : MonoBehaviour
 
     public void HitByPlayer(Vector3 playerLookDirection, int amountOfTimes = 1)
     {
-        //movement
         moveDirection = playerLookDirection.normalized;
         IncreaseMoveSpeed(amountOfTimes);
         rb.linearVelocity = moveDirection * currentMoveSpeed;
-
-        //audio
-        if (hitByPlayerSound)
-            AudioSource.PlayClipAtPoint(hitByPlayerSound, transform.position); //find way to create a function that can be used to spawn an audio and randomize pitch
     }
 
     private void IncreaseMoveSpeed(int amount = 0)
@@ -62,8 +53,7 @@ public class BallPhysics : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Surface"))
         {
-            if (surfaceBounceSound)
-                AudioSource.PlayClipAtPoint(surfaceBounceSound, transform.position);
+            
         }
     }
 }
