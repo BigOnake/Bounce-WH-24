@@ -7,7 +7,7 @@ public class GameEventListener : MonoBehaviour
     public GameEvent Event;
 
     [Tooltip("Action to invoke when Event is raised")]
-    public UnityEvent Response;
+    public UnityEvent<Component, object> Response;
 
     private void OnEnable()
     {
@@ -19,8 +19,8 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListeners(this);   
     }
 
-    public void OnEventRaised()
+    public void OnEventRaised(Component sender = null, object data = null)
     {
-        Response.Invoke();
+        Response.Invoke(sender, data);
     }
 }
