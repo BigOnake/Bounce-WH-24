@@ -8,6 +8,10 @@ public class BallPhysics : MonoBehaviour
     [SerializeField] private float maxMoveSpeed = 100f;
     [SerializeField, Range(0.0f, 1.0f)] private float percentSpeedGain = 0.1f;
 
+    [Header("Events")]
+    public GameEvent surfaceHitEvent;
+    public GameEvent hitByPlayerEvent;
+
     private Rigidbody rb;
 
     private Vector3 moveDirection;
@@ -37,6 +41,8 @@ public class BallPhysics : MonoBehaviour
         moveDirection = playerLookDirection.normalized;
         IncreaseMoveSpeed(amountOfTimes);
         rb.linearVelocity = moveDirection * currentMoveSpeed;
+
+        hitByPlayerEvent.Raise();
     }
 
     private void IncreaseMoveSpeed(int amount = 0)
@@ -51,9 +57,9 @@ public class BallPhysics : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Surface"))
+        if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Floor"))
         {
-            
+            surfaceHitEvent.Raise();
         }
     }
 }
