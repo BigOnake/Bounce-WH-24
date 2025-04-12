@@ -6,8 +6,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private int startingPlayerLives = 5;
 
     [Header("Events")]
-    public GameEvent roundResetEvent;
     public GameEvent roundEndEvent;
+    public GameEvent gameEndEvent;
 
     private int player1Lives;
     private int player2Lives;
@@ -18,7 +18,7 @@ public class RoundManager : MonoBehaviour
         player2Lives = startingPlayerLives;
     }
 
-    public void PlayerHit(Component sender, object data) //remove default
+    public void EndRound(Component sender, object data) //remove default
     {
         if (data is int playerNumber)
         {
@@ -28,7 +28,7 @@ public class RoundManager : MonoBehaviour
                 Debug.Log($"Player 1 was hit! Lives remaining: {player1Lives}");
 
                 if (player1Lives <= 0)
-                    EndRound(1);
+                    EndGame(1);
                 else
                     ResetRound();
             }
@@ -38,7 +38,7 @@ public class RoundManager : MonoBehaviour
                 Debug.Log($"Player 2 was hit! Lives remaining: {player2Lives}");
 
                 if (player2Lives <= 0)
-                    EndRound(2);
+                    EndGame(2);
                 else
                     ResetRound();
             }
@@ -48,12 +48,12 @@ public class RoundManager : MonoBehaviour
     private void ResetRound()
     {
         Debug.Log("Resetting round...");
-        roundResetEvent.Raise();
+        roundEndEvent.Raise();
     }
 
-    private void EndRound(int losingPlayer)
+    private void EndGame(int losingPlayer)
     {
         Debug.Log($"Player {losingPlayer} lost the game!");
-        roundEndEvent.Raise();
+        gameEndEvent.Raise();
     }
 }

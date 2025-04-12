@@ -11,35 +11,34 @@ public class BallPhysics : MonoBehaviour
     [Header("Events")]
     public GameEvent surfaceHitEvent;
     public GameEvent hitByPlayerEvent;
-    public GameEvent playerHitEvent;
+    //public GameEvent playerHitEvent;
 
     private Rigidbody rb;
 
     private Vector3 moveDirection;
     private float currentMoveSpeed = 0f;
+    bool hasBeenInitiallyHit = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        //delete after testing
-        moveDirection = Random.onUnitSphere;
-        moveDirection.y = 0; //remove again
-        moveDirection.Normalize();
-
-        currentMoveSpeed = initialMoveSpeed;
-        rb.linearVelocity = moveDirection * currentMoveSpeed;
-        //end of delete
     }
 
-    void FixedUpdate()
-    {
-        rb.linearVelocity = rb.linearVelocity.normalized * currentMoveSpeed;
-    }
+    //void FixedUpdate()
+    //{
+    //    rb.linearVelocity = rb.linearVelocity.normalized * currentMoveSpeed;
+    //}
 
     public void HitByPlayer(Vector3 playerLookDirection, int amountOfTimes = 1)
     {
         moveDirection = playerLookDirection.normalized;
+
+        if (!hasBeenInitiallyHit)
+        {
+            currentMoveSpeed = initialMoveSpeed;
+            hasBeenInitiallyHit = true;
+        }
+
         IncreaseMoveSpeed(amountOfTimes);
         rb.linearVelocity = moveDirection * currentMoveSpeed;
 
@@ -60,7 +59,8 @@ public class BallPhysics : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHitEvent.Raise(this, 1);
+            //insert ball explosion or effect?
+            //disable ball here
         }
         if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Floor"))
         {

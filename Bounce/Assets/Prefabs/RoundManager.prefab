@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPlayerLives: 5
-  roundResetEvent: {fileID: 11400000, guid: 99765069724df1f46843d2239e62fba7, type: 2}
-  roundEndEvent: {fileID: 11400000, guid: d7efc3a32709c1f4a95101f00be11959, type: 2}
+  roundEndEvent: {fileID: 11400000, guid: 99765069724df1f46843d2239e62fba7, type: 2}
+  gameEndEvent: {fileID: 11400000, guid: d7efc3a32709c1f4a95101f00be11959, type: 2}
 --- !u!114 &6547931351479668524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,13 +60,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a797ee7b000194d9de4bcbf3ce3b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: fa49a172a0c47214db87d0000e9ab963, type: 2}
+  Event: {fileID: 11400000, guid: ea235b849fd76a045bd750dfd007b956, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7882384203482609294}
         m_TargetAssemblyTypeName: RoundManager, Assembly-CSharp
-        m_MethodName: PlayerHit
+        m_MethodName: EndRound
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -102,6 +102,10 @@ GameObject:
   - component: {fileID: 4195423543780898234}
   - component: {fileID: 3935240535896575964}
   - component: {fileID: 2856597867722262097}
+  - component: {fileID: 7236090850591183958}
+  - component: {fileID: 5331279199994347716}
+  - component: {fileID: 6727699820888148867}
+  - component: {fileID: 5938818648104461755}
   m_Layer: 0
   m_Name: Player (attack)
   m_TagString: Player
@@ -407,6 +411,74 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 5811280178163052576}
+--- !u!114 &7236090850591183958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286402043196241288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9e3b8aa68185442860384afa2d4b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5331279199994347716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286402043196241288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b699fe85602d524d9ae832b429f2029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticles: {fileID: 0}
+  playerNumber: 1
+  playerDeathFinishedEvent: {fileID: 11400000, guid: ea235b849fd76a045bd750dfd007b956, type: 2}
+--- !u!114 &6727699820888148867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286402043196241288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e623df821a940554b91836d16a324cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: {fileID: 0}
+--- !u!114 &5938818648104461755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286402043196241288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a797ee7b000194d9de4bcbf3ce3b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 99765069724df1f46843d2239e62fba7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6727699820888148867}
+        m_TargetAssemblyTypeName: PlayerResetter, Assembly-CSharp
+        m_MethodName: ResetPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3077968080737277843
 GameObject:
   m_ObjectHideFlags: 0

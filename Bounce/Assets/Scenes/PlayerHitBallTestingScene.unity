@@ -127,33 +127,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.5283175
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.8712258
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.4569025
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
-      propertyPath: m_LocalRotation.w
+    - target: {fileID: 334294136136410500, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.224
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.783
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000004470348
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -161,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -186,6 +190,14 @@ PrefabInstance:
     - target: {fileID: 4195423543780898234, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: speed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195423543780898234, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: grounded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161885023866214945, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -301,6 +313,10 @@ PrefabInstance:
     - target: {fileID: 433731281207161296, guid: c67c6ac1a3a73344a803cd27f6c060b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618847594628494227, guid: c67c6ac1a3a73344a803cd27f6c060b7, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8083743449190975784, guid: c67c6ac1a3a73344a803cd27f6c060b7, type: 3}
       propertyPath: m_Name

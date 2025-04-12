@@ -138,6 +138,8 @@ GameObject:
   - component: {fileID: 3337685260866805255}
   - component: {fileID: 4633536522361614704}
   - component: {fileID: 8697899957349951481}
+  - component: {fileID: 1455977161110508912}
+  - component: {fileID: 9062697021057967376}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -343,6 +345,47 @@ MonoBehaviour:
       - m_Target: {fileID: 3337685260866805255}
         m_TargetAssemblyTypeName: BallAudio, Assembly-CSharp
         m_MethodName: PlayAudioPlayerHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1455977161110508912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197456474135091679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cd000fb17d93b4c98f681cbc307fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: {fileID: 0}
+--- !u!114 &9062697021057967376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197456474135091679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a797ee7b000194d9de4bcbf3ce3b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 99765069724df1f46843d2239e62fba7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1455977161110508912}
+        m_TargetAssemblyTypeName: BallResetter, Assembly-CSharp
+        m_MethodName: ResetBall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
