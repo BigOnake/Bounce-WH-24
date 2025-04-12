@@ -279,6 +279,7 @@ MonoBehaviour:
   percentSpeedGain: 0.1
   surfaceHitEvent: {fileID: 11400000, guid: 40e50a55d921e4c4eb35a2dee1dc6be4, type: 2}
   hitByPlayerEvent: {fileID: 11400000, guid: 007ce395dd856de449a0f593aedd90bb, type: 2}
+  playerHitEvent: {fileID: 11400000, guid: fa49a172a0c47214db87d0000e9ab963, type: 2}
 --- !u!114 &3337685260866805255
 MonoBehaviour:
   m_ObjectHideFlags: 0

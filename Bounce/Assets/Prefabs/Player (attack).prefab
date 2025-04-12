@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 2856597867722262097}
   m_Layer: 0
   m_Name: Player (attack)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,10 +243,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 3598911219286079458}
+  playerCamera: {fileID: 5811280178163052576}
+  velocity: 0
   speed: 4
   sensitivity: 0.1
   maxSpeed: 1
+  friction: 1
   jumpForce: 3
+  gravity: -9.8
+  grounded: 0
+  minYAngle: -90
+  maxYAngle: 90
+  wishDir: {x: 0, y: 0, z: 0}
 --- !u!114 &3935240535896575964
 MonoBehaviour:
   m_ObjectHideFlags: 0

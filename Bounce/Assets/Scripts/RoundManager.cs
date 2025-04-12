@@ -18,39 +18,42 @@ public class RoundManager : MonoBehaviour
         player2Lives = startingPlayerLives;
     }
 
-    //public void PlayerHit(int playerNumber)
-    //{
-    //    if (playerNumber == 1)
-    //    {
-    //        player1Lives--;
-    //        Debug.Log($"Player 1 was hit! Lives remaining: {player1Lives}");
+    public void PlayerHit(Component sender, object data) //remove default
+    {
+        if (data is int playerNumber)
+        {
+            if (playerNumber == 1)
+            {
+                player1Lives--;
+                Debug.Log($"Player 1 was hit! Lives remaining: {player1Lives}");
 
-    //        if (player1Lives < 0)
-    //            EndRound(1);
-    //        else
-    //            ResetRound();
-    //    }
-    //    else if (playerNumber == 2)
-    //    {
-    //        player2Lives--;
-    //        Debug.Log($"Player 2 was hit! Lives remaining: {player2Lives}");
+                if (player1Lives <= 0)
+                    EndRound(1);
+                else
+                    ResetRound();
+            }
+            else if (playerNumber == 2)
+            {
+                player2Lives--;
+                Debug.Log($"Player 2 was hit! Lives remaining: {player2Lives}");
 
-    //        if (player2Lives < 0)
-    //            EndRound(2);
-    //        else
-    //            ResetRound();
-    //    }
-    //}
+                if (player2Lives <= 0)
+                    EndRound(2);
+                else
+                    ResetRound();
+            }
+        }
+    }
 
-    //private void ResetRound()
-    //{
-    //    Debug.Log("Resetting round...");
-    //    roundResetEvent?.Invoke();
-    //}
+    private void ResetRound()
+    {
+        Debug.Log("Resetting round...");
+        roundResetEvent.Raise();
+    }
 
-    //private void EndRound(int losingPlayer)
-    //{
-    //    Debug.Log($"Player {losingPlayer} lost the round!");
-    //    onRoundEnd?.Invoke(losingPlayer);
-    //}
+    private void EndRound(int losingPlayer)
+    {
+        Debug.Log($"Player {losingPlayer} lost the game!");
+        roundEndEvent.Raise();
+    }
 }

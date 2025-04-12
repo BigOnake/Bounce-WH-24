@@ -60,7 +60,7 @@ public class BallPhysics : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHitEvent.Raise();
+            playerHitEvent.Raise(this, 1);
         }
         if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Floor"))
         {
