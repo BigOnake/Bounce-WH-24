@@ -4,13 +4,29 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody playerRb;
-    public float speed, sensitivity, maxSpeed;
-    public float jumpForce;
-    private float lookRotation;
-    private bool grounded;
+    public Camera playerCamera;
 
+    [Header("Movement Values")]
+    public float velocity;
+    public float speed = 5f,
+                 sensitivity = 0.1f, 
+                 maxSpeed = 10f;
+    public float friction = 1f;
+
+    [Header("Jump Values")]
+    public float jumpForce = 3f;
+    public float gravity = -9.8f;
+    public bool grounded;
+
+    [Header("Camera Values")]
+    public float minYAngle = -90f;
+    public float maxYAngle = 90f;
+
+    private float lookRotation;
     private Vector2 movementDirection, lookingDirection;
-    private Vector3 curVelocity, targetVelocity, velocityChange;
+    private Vector3 curVelocity, wishVelocity, acceleration;
+    [SerializeField]
+    private Vector3 wishDir;
     private Vector3 jumpHeight;
 
     void Start()
@@ -20,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        HorizontalMovement();
     }
 
     private void LateUpdate()
@@ -28,27 +44,39 @@ public class PlayerMovement : MonoBehaviour
         Look();   
     }
 
-    private void Move()
+    //---------- Movement -----------
+    /* TODO: 
+     * Less strafing in the air
+     * No sliding off shallow slopes
+     */
+
+    private void HorizontalMovement()
     {
         curVelocity = playerRb.linearVelocity;
-        targetVelocity = new Vector3(movementDirection.x, 0, movementDirection.y);
-        targetVelocity *= speed;
 
-        targetVelocity = transform.TransformDirection(targetVelocity);
+        UpdateInput();
 
-        velocityChange = (targetVelocity - curVelocity);
-        velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);
+        acceleration = (wishVelocity - curVelocity); //Acceleration
+        acceleration = new Vector3(acceleration.x, 0f, acceleration.z); //Dont apply vertical forces
+        acceleration = Vector3.ClampMagnitude(acceleration, maxSpeed); // Cap Acceleration
 
-        Vector3.ClampMagnitude(velocityChange, maxSpeed);
-        playerRb.AddForce(velocityChange, ForceMode.VelocityChange);
+        playerRb.AddForce(acceleration, ForceMode.VelocityChange);
+        velocity = playerRb.linearVelocity.magnitude;
+    }
+
+    private void UpdateInput()
+    {
+        wishVelocity = new Vector3(movementDirection.x, 0f, movementDirection.y) * speed; // Get desired direction locally (in relation to the player)
+        wishDir = wishVelocity.normalized;
+        wishVelocity = transform.TransformDirection(wishVelocity); // Transform desired direction from local perspective into world space
     }
 
     private void Look()
     {
         transform.Rotate(Vector3.up * lookingDirection.x * sensitivity);
         lookRotation += (-lookingDirection.y * sensitivity);
-        lookRotation = Mathf.Clamp(lookRotation, -90, 90);
-        Camera.main.transform.eulerAngles = new Vector3(lookRotation, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
+        lookRotation = Mathf.Clamp(lookRotation, minYAngle, maxYAngle);
+        playerCamera.transform.eulerAngles = new Vector3(lookRotation, playerCamera.transform.eulerAngles.y, playerCamera.transform.eulerAngles.z);
     }
 
     public void Jump()
@@ -59,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpHeight = Vector3.up * jumpForce;
         }
-        
+
         playerRb.AddForce(jumpHeight, ForceMode.VelocityChange);
     }
 

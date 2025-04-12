@@ -10,7 +10,7 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
-        else if (other.gameObject.CompareTag("Floor"))
+        else if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             playerController.SetGrounded(true);
         }
@@ -22,7 +22,7 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
-        else if (other.gameObject.CompareTag("Floor"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             playerController.SetGrounded(false);
         }
@@ -34,8 +34,7 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
-
-        else if (other.gameObject.CompareTag("Floor"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             playerController.SetGrounded(true);
         }
