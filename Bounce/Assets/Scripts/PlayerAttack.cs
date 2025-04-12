@@ -8,6 +8,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackDuration = 0.1f;
     [SerializeField] private Cooldown attackCooldown;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float hitboxOffset = 1.5f;
 
     private bool isAttacking = false;
 
@@ -27,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
 
             Vector3 lookDirection = cameraTransform.forward;
             attackHitbox.transform.rotation = Quaternion.LookRotation(lookDirection);
-            attackHitbox.transform.position = transform.position + lookDirection * 1.5f;
+            attackHitbox.transform.position = cameraTransform.position + lookDirection * hitboxOffset;
 
             Invoke(nameof(EndAttack), attackDuration); //maybe replace with end of animation which calls end attack
         }
@@ -42,3 +43,4 @@ public class PlayerAttack : MonoBehaviour
 
     public bool IsAttacking() { return isAttacking; }
 }
+

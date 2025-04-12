@@ -263,6 +263,8 @@ MonoBehaviour:
   attackDuration: 0.1
   attackCooldown:
     cooldownDuration: 0.75
+  cameraTransform: {fileID: 3185742347711567824}
+  hitboxOffset: 1.5
 --- !u!114 &2856597867722262097
 MonoBehaviour:
   m_ObjectHideFlags: 0

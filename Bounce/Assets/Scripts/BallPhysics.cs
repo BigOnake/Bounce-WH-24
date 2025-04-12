@@ -11,6 +11,7 @@ public class BallPhysics : MonoBehaviour
     [Header("Events")]
     public GameEvent surfaceHitEvent;
     public GameEvent hitByPlayerEvent;
+    public GameEvent playerHitEvent;
 
     private Rigidbody rb;
 
@@ -59,7 +60,7 @@ public class BallPhysics : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player hit by Ball (Died)!");
+            playerHitEvent.Raise();
         }
         if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Floor"))
         {
