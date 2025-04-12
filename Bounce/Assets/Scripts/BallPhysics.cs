@@ -11,6 +11,7 @@ public class BallPhysics : MonoBehaviour
     [Header("Events")]
     public GameEvent surfaceHitEvent;
     public GameEvent hitByPlayerEvent;
+    public GameEvent playerHitEvent;
 
     private Rigidbody rb;
 
@@ -23,7 +24,7 @@ public class BallPhysics : MonoBehaviour
 
         //delete after testing
         moveDirection = Random.onUnitSphere;
-        //moveDirection.y = 0;
+        moveDirection.y = 0; //remove again
         moveDirection.Normalize();
 
         currentMoveSpeed = initialMoveSpeed;
@@ -57,6 +58,10 @@ public class BallPhysics : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerHitEvent.Raise();
+        }
         if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Floor"))
         {
             surfaceHitEvent.Raise();
