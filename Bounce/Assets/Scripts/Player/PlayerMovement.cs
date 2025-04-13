@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody playerRb;
-    public Camera playerCamera;
 
     [Header("Movement Values")]
     public float displaySpeed;
@@ -110,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return isGrounded;
     }
+
     public void LandOnGround()
     {
         landOnGroundEvent.Raise(this, transform.GetComponentInParent<PlayerId>().GetId());

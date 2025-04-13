@@ -151,18 +151,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 3598911219286079458}
-  playerCamera: {fileID: 0}
   displaySpeed: 0
   speed: 8
   maxSpeed: 10
-  jumpForce: 5
+  jumpForce: 4
   gravity: -9.8
   isGrounded: 0
   airStrafingMult: 0.1
   downVel: 0.2
   wishDir: {x: 0, y: 0, z: 0}
-  jumpUpEvent: {fileID: 0}
-  landOnGroundEvent: {fileID: 0}
+  jumpUpEvent: {fileID: 11400000, guid: d2556066e1da6c845887bbe927005c93, type: 2}
+  landOnGroundEvent: {fileID: 11400000, guid: d81b0f98e664be948bead8c46783ba1a, type: 2}
 --- !u!1 &2286402043196241288
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +177,7 @@ GameObject:
   - component: {fileID: 3598911219286079458}
   - component: {fileID: 483724674466538752}
   - component: {fileID: 8951244786559357032}
+  - component: {fileID: 5602212831604575852}
   m_Layer: 0
   m_Name: Player (attack) 1
   m_TagString: Player
@@ -453,6 +453,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9e3b8aa68185442860384afa2d4b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5602212831604575852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286402043196241288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc5bc0813b1fbe49bf91dbfbb33f57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pId: 0
 --- !u!1 &3077968080737277843
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 3077968080737277843}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.22300005, z: 0.71300006}
+  m_LocalPosition: {x: 0, y: 0.725, z: 0.71300006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -776,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b699fe85602d524d9ae832b429f2029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeathStartEvent: {fileID: 0}
+  playerDeathStartEvent: {fileID: 11400000, guid: 3765333a7ee093c499fd753bcd0c16da, type: 2}
   playerDeathFinishedEvent: {fileID: 11400000, guid: ea235b849fd76a045bd750dfd007b956, type: 2}
 --- !u!1 &6933680582281773694
 GameObject:
