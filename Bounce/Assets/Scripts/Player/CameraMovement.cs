@@ -47,6 +47,13 @@ public class CameraMovement : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         lookingInputs = context.ReadValue<Vector2>();
+
+        var device = context.control.device;
+
+        if (device is Gamepad)
+        {
+            sensitivity = 3f;
+        }
     }
 
     public void ShakeScreen(float duration, float intensity)
