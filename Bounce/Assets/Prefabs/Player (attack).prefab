@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 360269997122760808}
   - component: {fileID: 8107053504314931478}
   - component: {fileID: 8771845055709294238}
+  - component: {fileID: 2910271125430665062}
   - component: {fileID: 922573498920859368}
   m_Layer: 0
   m_Name: Audio
@@ -144,8 +145,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd5271dc695242c4983ddbdd18c822b2, type: 3}
   - {fileID: 8300000, guid: 11aa8544550033c4cbee88975ab78289, type: 3}
   - {fileID: 8300000, guid: 7ef45c45393b1734fb92ec12402f37e4, type: 3}
+  AttackSwingSounds:
+  - {fileID: 8300000, guid: a3f864301476e294eb056d7ad1257e0f, type: 3}
+  - {fileID: 8300000, guid: 6000eff589b618940b64e4f52ac63563, type: 3}
+  - {fileID: 8300000, guid: a345755883f453f43ae657effc291d65, type: 3}
   aSJump: {fileID: 6135063054440317453}
   aSLand: {fileID: 360269997122760808}
+  aSSwing: {fileID: 6135063054440317453}
   aSDeath: {fileID: 6135063054440317453}
 --- !u!82 &6135063054440317453
 AudioSource:
@@ -397,6 +403,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2910271125430665062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043103211153404814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a797ee7b000194d9de4bcbf3ce3b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 0}
+  Response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &922573498920859368
 MonoBehaviour:
   m_ObjectHideFlags: 0
