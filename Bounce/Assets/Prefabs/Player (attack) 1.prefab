@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 3314719678887724000}
-  playerModel: {fileID: 0}
+  playerModel: {fileID: 1954015798049040364}
   sensitivity: 0.31
   minYAngle: -90
   maxYAngle: 90
@@ -161,6 +161,8 @@ MonoBehaviour:
   airStrafingMult: 0.1
   downVel: 0.2
   wishDir: {x: 0, y: 0, z: 0}
+  jumpUpEvent: {fileID: 0}
+  landOnGroundEvent: {fileID: 0}
 --- !u!1 &2286402043196241288
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +666,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1168920162671804314}
-  - component: {fileID: 6217137330329280989}
   m_Layer: 0
   m_Name: Animation
   m_TagString: Untagged
@@ -688,28 +689,6 @@ Transform:
   - {fileID: 1954015798049040364}
   m_Father: {fileID: 1475098832946509328}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6217137330329280989
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6246126108295363715}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d73149378308c0438245f60d8e2c0e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6721263703576994880
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,8 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b699fe85602d524d9ae832b429f2029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticles: {fileID: 0}
-  playerNumber: 1
+  playerDeathStartEvent: {fileID: 0}
   playerDeathFinishedEvent: {fileID: 11400000, guid: ea235b849fd76a045bd750dfd007b956, type: 2}
 --- !u!1 &6933680582281773694
 GameObject:
