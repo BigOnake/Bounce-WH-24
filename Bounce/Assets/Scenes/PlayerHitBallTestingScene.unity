@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 3935240535896575964, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: cameraTransform
       value: 
-      objectReference: {fileID: 244917677}
+      objectReference: {fileID: 0}
     - target: {fileID: 3935240535896575964, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: attackCooldown.cooldownDuration
       value: 0.5
@@ -204,11 +204,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
---- !u!4 &244917677 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3185742347711567824, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
-  m_PrefabInstance: {fileID: 96196267}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &300261593
 PrefabInstance:
   m_ObjectHideFlags: 0
