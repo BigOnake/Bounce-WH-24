@@ -131,6 +131,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 922573498920859368, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 922573498920859368, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2139475296}
+    - target: {fileID: 922573498920859368, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudioPlayerDeath
+      objectReference: {fileID: 0}
     - target: {fileID: 1475098832946509328, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.224
@@ -177,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395840968066085549, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: isGrounded
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3077968080737277843, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_IsActive
@@ -198,6 +210,58 @@ PrefabInstance:
     - target: {fileID: 4195423543780898234, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: grounded
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444133483586496825, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444133483586496825, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1852249555}
+    - target: {fileID: 4444133483586496825, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayLandingParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352258493563642693, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: deathParticles
+      value: 
+      objectReference: {fileID: 2085600004}
+    - target: {fileID: 8107053504314931478, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107053504314931478, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2139475296}
+    - target: {fileID: 8107053504314931478, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudioPlayerJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771845055709294238, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771845055709294238, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2139475296}
+    - target: {fileID: 8771845055709294238, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAudioPlayerLand
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030535613746002581, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030535613746002581, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1852249555}
+    - target: {fileID: 9030535613746002581, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayDeathParticles
       objectReference: {fileID: 0}
     - target: {fileID: 9161885023866214945, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
       propertyPath: m_Enabled
@@ -392,6 +456,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7618847594628494227, guid: c67c6ac1a3a73344a803cd27f6c060b7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618847594628494227, guid: c67c6ac1a3a73344a803cd27f6c060b7, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -404,6 +472,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c67c6ac1a3a73344a803cd27f6c060b7, type: 3}
+--- !u!114 &1852249555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7352258493563642693, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+  m_PrefabInstance: {fileID: 96196267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc053f1a3982ec4a8551e381d850a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!198 &2085600004 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1457493373777896714, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+  m_PrefabInstance: {fileID: 96196267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2139475296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6414397467485579561, guid: acc6d16db4784c54c859ba6a2f34c77a, type: 3}
+  m_PrefabInstance: {fileID: 96196267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2c4c907f2cab946a766f7f993455fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7268875666245125949
 PrefabInstance:
   m_ObjectHideFlags: 0

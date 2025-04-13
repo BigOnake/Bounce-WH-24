@@ -8,42 +8,41 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private List<AudioClip> jumpSounds;
     [SerializeField] private List<AudioClip> landOnGroundSounds;
 
-    private AudioSource aS;
+    [SerializeField] private AudioSource aSJump;
+    [SerializeField] private AudioSource aSLand;
+    [SerializeField] private AudioSource aSDeath;
 
-    private void Awake()
+    public void PlayAudioPlayerJump(Component sender, object id)
     {
-        aS = GetComponent<AudioSource>();
-    }
+        if (transform.GetComponentInParent<PlayerId>().GetId() != (int)id) { return; }
 
-    public void PlayAudioPlayerJump()
-    {
         AudioClip clip = GetRandomSoundClip(jumpSounds);
 
         if (clip != null)
         {
-            Debug.Log("Player Jump Audio Play");
-            PlaySoundWithRandomPitch(clip);
+            PlaySoundWithRandomPitch(clip, aSJump);
         }
     }
 
-    public void PlayAudioPlayerLand()
+    public void PlayAudioPlayerLand(Component sender, object id)
     {
-        Debug.Log("Player Land Audio Function Start");
+        if (transform.GetComponentInParent<PlayerId>().GetId() != (int)id) { return; }
+
         AudioClip clip = GetRandomSoundClip(landOnGroundSounds);
 
         if (clip != null)
         {
-            Debug.Log("Player Land Audio Play");
-            PlaySoundWithRandomPitch(clip);
+            PlaySoundWithRandomPitch(clip, aSLand);
         }
     }
 
-    public void PlayAudioPlayerDeath()
+    public void PlayAudioPlayerDeath(Component sender, object id)
     {
+        if (transform.GetComponentInParent<PlayerId>().GetId() != (int)id) { return; }
+
         if (deathSound != null)
         {
-            aS.clip = deathSound;
-            aS.Play();
+            aSDeath.PlayOneShot(deathSound);
         }
     }
 
@@ -59,7 +58,7 @@ public class PlayerAudio : MonoBehaviour
         }
     }
 
-    private void PlaySoundWithRandomPitch(AudioClip clip)
+    private void PlaySoundWithRandomPitch(AudioClip clip, AudioSource aS)
     {
         if (clip != null)
         {

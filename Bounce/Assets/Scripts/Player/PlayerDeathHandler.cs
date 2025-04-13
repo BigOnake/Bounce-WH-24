@@ -3,10 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerDeathHandler : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem deathParticles;
-    [SerializeField] private int playerNumber = 1;
-
     [Header("Events")]
+    public GameEvent playerDeathStartEvent;
     public GameEvent playerDeathFinishedEvent;
 
     private PlayerInput input;
@@ -22,7 +20,12 @@ public class PlayerDeathHandler : MonoBehaviour
         //    input.enabled = false;
         //
         // Insert death effects/particles here
+        playerDeathStartEvent.Raise(this, transform.GetComponentInParent<PlayerId>().GetId());
+        DeathFinished(); //in future, when death particles finish, raise event for death finished
+    }
 
-        playerDeathFinishedEvent.Raise(this, playerNumber);
+    public void DeathFinished()
+    {
+        playerDeathFinishedEvent.Raise(this, transform.GetComponentInParent<PlayerId>().GetId());
     }
 }

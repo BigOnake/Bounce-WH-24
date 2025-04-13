@@ -104,6 +104,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetGrounded(bool state)
     {
         isGrounded = state;
+    }
+
+    public void LandOnGround()
+    {
         landOnGroundEvent.Raise(this, transform.GetComponentInParent<PlayerId>().GetId());
     }
 }

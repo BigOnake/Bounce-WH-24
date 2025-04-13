@@ -22,7 +22,7 @@ public class RoundManager : MonoBehaviour
     {
         if (data is int playerNumber)
         {
-            if (playerNumber == 1)
+            if (playerNumber == 0)
             {
                 player1Lives--;
                 Debug.Log($"Player 1 was hit! Lives remaining: {player1Lives}");
@@ -32,7 +32,7 @@ public class RoundManager : MonoBehaviour
                 else
                     ResetRound();
             }
-            else if (playerNumber == 2)
+            else if (playerNumber == 1)
             {
                 player2Lives--;
                 Debug.Log($"Player 2 was hit! Lives remaining: {player2Lives}");
@@ -53,7 +53,7 @@ public class RoundManager : MonoBehaviour
 
     private void EndGame(int losingPlayer)
     {
-        Debug.Log($"Player {losingPlayer} lost the game!");
+        Debug.Log($"Player {losingPlayer + 1} lost the game!");
         gameEndEvent.Raise();
     }
 }

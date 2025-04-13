@@ -13,6 +13,7 @@ public class GroundCheck : MonoBehaviour
         else if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             playerController.SetGrounded(true);
+            playerController.LandOnGround();
         }
     }
 
