@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementDirection;
     private Vector3 curVelocity, wishVelocity, acceleration;
     [SerializeField]
-    private Vector3 wishDir;
+    public Vector3 wishDir;
     private Vector3 jumpHeight;
 
     void Start()
@@ -99,5 +99,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetGrounded(bool state)
     {
         isGrounded = state;
+    }
+
+    public bool GetGrounded()
+    {
+        return isGrounded;
     }
 }

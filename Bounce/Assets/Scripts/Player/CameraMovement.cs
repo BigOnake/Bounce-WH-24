@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class CameraMovement : MonoBehaviour
 {
     public Camera playerCamera;
+    public Transform playerModel;
     public float sensitivity = 0.1f;
     public float minYAngle = -90f;
     public float maxYAngle = 90f;
@@ -38,6 +39,7 @@ public class CameraMovement : MonoBehaviour
     public void Look()
     {
         transform.Rotate(Vector3.up * lookingInputs.x * sensitivity);
+        playerModel.rotation = transform.rotation;
 
         lookRotation += (-lookingInputs.y * sensitivity);
         lookRotation = Mathf.Clamp(lookRotation, minYAngle, maxYAngle);
