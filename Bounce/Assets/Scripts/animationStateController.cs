@@ -2,30 +2,61 @@ using UnityEngine;
 
 public class animationStateController : MonoBehaviour
 {
-    Animator animator;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Animator animator;
+    public PlayerMovement playerMovement;
+    float zVel, xVel, yVel;
+    bool isRunning;
+    bool isJumping;
+    bool isPunching;
+    bool isIdle;
+
     void Start()
     {
-        animator = GetComponent<Animator>();
         Debug.Log(animator);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        bool isRunning = animator.GetBool("isRunning");
-        bool forwardPressed = Input.GetKey("w");
-        // if player presses w key
-        if (!isRunning && forwardPressed)
+        isRunning = animator.GetBool("isRunning");
+        isJumping = animator.GetBool("isJumping");
+        isPunching = animator.GetBool("isPunching");
+
+        if (!isRunning && isHorizontalMove())
         {
-            // then set the isRunning boolean to true
             animator.SetBool("isRunning", true);
         }
-        // if player not pressing w key
-        if (isRunning && !forwardPressed)
+        if(isRunning && !isHorizontalMove())
         {
-            // then set the isRunning boolean to be false
             animator.SetBool("isRunning", false);
         }
+
+        if(!isJumping && !isOnGround())
+        {
+            animator.SetBool("isJumping", true);
+        }
+        if (isJumping && isOnGround())
+        {
+            animator.SetBool("isJumping", false);
+        }
+
+        /*if(isPunching)
+        {
+            animator.SetTrigger("isPunching");
+        }*/
+    }
+
+    private bool isHorizontalMove()
+    {
+        return (playerMovement.wishDir.z != 0) || (playerMovement.wishDir.x != 0);
+    }
+
+    private bool isOnGround()
+    {
+        return playerMovement.GetGrounded();
+    }
+
+    public void OnAttack()
+    {
+        //isPunching = true;
     }
 }
