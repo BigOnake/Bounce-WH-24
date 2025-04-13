@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 wishDir;
     private Vector3 jumpHeight;
 
+    [Header("Events")]
+    public GameEvent jumpUpEvent;
+    public GameEvent landOnGroundEvent;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             jumpHeight = Vector3.up * jumpForce;
+            jumpUpEvent.Raise(this, transform.GetComponentInParent<PlayerId>().GetId());
         }
 
         playerRb.AddForce(jumpHeight, ForceMode.VelocityChange);
@@ -99,5 +104,6 @@ public class PlayerMovement : MonoBehaviour
     public void SetGrounded(bool state)
     {
         isGrounded = state;
+        landOnGroundEvent.Raise(this, transform.GetComponentInParent<PlayerId>().GetId());
     }
 }
