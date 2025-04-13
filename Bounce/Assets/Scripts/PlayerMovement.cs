@@ -20,13 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float airStrafe;
     public float downVel = 0.2f;
 
-    [Header("Camera Values")]
-    public float minYAngle = -90f;
-    public float maxYAngle = 90f;
-    public float sensitivity = 0.1f;
-
-    private float lookRotation;
-    private Vector2 movementDirection, lookingDirection;
+    private Vector2 movementDirection;
     private Vector3 curVelocity, wishVelocity, acceleration;
     [SerializeField]
     private Vector3 wishDir;
@@ -40,11 +34,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         HorizontalMovement();
-    }
-
-    private void LateUpdate()
-    {
-        Look();   
     }
 
     //---------- Movement -----------
@@ -85,15 +74,6 @@ public class PlayerMovement : MonoBehaviour
         wishVelocity = transform.TransformDirection(wishVelocity); // Transform desired direction from local perspective into world space
     }
 
-    private void Look()
-    {
-        transform.Rotate(Vector3.up * lookingDirection.x * sensitivity);
-
-        lookRotation += (-lookingDirection.y * sensitivity);
-        lookRotation = Mathf.Clamp(lookRotation, minYAngle, maxYAngle);
-        playerCamera.transform.eulerAngles = new Vector3(lookRotation, playerCamera.transform.eulerAngles.y, playerCamera.transform.eulerAngles.z);
-    }
-
     public void Jump()
     {
         jumpHeight = Vector3.zero;
@@ -109,11 +89,6 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementDirection = context.ReadValue<Vector2>();    
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        lookingDirection = context.ReadValue<Vector2>();
     }
 
     public void OnJump(InputAction.CallbackContext context)
