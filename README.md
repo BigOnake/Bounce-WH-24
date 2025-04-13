@@ -1,4 +1,8 @@
 # Super Ultra Mega Sonic Bouncy Ball
+---
+## Itch.io
+https://bigonake.itch.io/super-ultra-mega-sonic-bouncy-ball
+---
 ## Inspiration
 Our game is inspired by <em>Lethal League</em> for its high-octane projectile gameplay and <em>Quake</em> for its first-person deathmatch gameplay.
 ## What it does
