@@ -929,10 +929,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 67376effc7a523d47ab7d0b29b05e4de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1150106488626021982}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 67376effc7a523d47ab7d0b29b05e4de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8896969849773315166}
   m_SourcePrefab: {fileID: 100100000, guid: 67376effc7a523d47ab7d0b29b05e4de, type: 3}
 --- !u!4 &6183803295658255144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 67376effc7a523d47ab7d0b29b05e4de, type: 3}
   m_PrefabInstance: {fileID: 5934602092120687811}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6816929181531240850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 67376effc7a523d47ab7d0b29b05e4de, type: 3}
+  m_PrefabInstance: {fileID: 5934602092120687811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1150106488626021982
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816929181531240850}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d73149378308c0438245f60d8e2c0e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8896969849773315166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816929181531240850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd504e78bd29a3049a8328e8eb3a164c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
