@@ -10,7 +10,7 @@ public class PlayerHitDetection : MonoBehaviour
 
     private void Awake()
     {
-        deathHandler = GetComponent<PlayerDeathHandler>();
+        deathHandler = GetComponentInChildren<PlayerDeathHandler>();
     }
 
     private void OnCollisionEnter(Collision collision)
