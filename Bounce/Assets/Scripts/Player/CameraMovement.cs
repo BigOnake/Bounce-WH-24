@@ -9,17 +9,30 @@ public class CameraMovement : MonoBehaviour
     public float minYAngle = -90f;
     public float maxYAngle = 90f;
 
+    private float shakeDuration;
+    private float shakeIntensity;
+    private float shakeTime = 0;
+
+    private Vector3 originalPos;
+
     private Vector2 lookingInputs;
     private float lookRotation;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        originalPos = playerCamera.transform.position;
     }
 
     void LateUpdate()
     {
         Look();
+
+        if (shakeTime > 0)
+        {
+            transform.localPosition = originalPos + UnityEngine.Random.insideUnitSphere * shakeIntensity;
+            shakeTime -= Time.deltaTime;
+        }
     }
 
     public void Look()
@@ -34,5 +47,12 @@ public class CameraMovement : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         lookingInputs = context.ReadValue<Vector2>();
+    }
+
+    public void ShakeScreen(float duration, float intensity)
+    {
+        shakeDuration = duration;
+        shakeIntensity = intensity;
+        shakeTime = duration;
     }
 }
