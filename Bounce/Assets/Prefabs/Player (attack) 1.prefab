@@ -154,7 +154,7 @@ MonoBehaviour:
   displaySpeed: 0
   speed: 8
   maxSpeed: 10
-  jumpForce: 4
+  jumpForce: 6
   gravity: -9.8
   isGrounded: 0
   airStrafingMult: 0.1
