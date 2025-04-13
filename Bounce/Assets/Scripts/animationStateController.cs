@@ -5,6 +5,10 @@ public class animationStateController : MonoBehaviour
     public Animator animator;
     public PlayerMovement playerMovement;
     float zVel, xVel, yVel;
+    bool isRunning;
+    bool isJumping;
+    bool isPunching;
+    bool isIdle;
 
     void Start()
     {
@@ -13,10 +17,9 @@ public class animationStateController : MonoBehaviour
 
     void Update()
     {
-        bool isRunning = animator.GetBool("isRunning");
-        bool isJumping = animator.GetBool("isJumping");
-        bool isPunching = animator.GetBool("isPunching");
-        bool isIdle = animator.GetBool("isIdle");
+        isRunning = animator.GetBool("isRunning");
+        isJumping = animator.GetBool("isJumping");
+        isPunching = animator.GetBool("isPunching");
 
         if (!isRunning && isHorizontalMove())
         {
@@ -35,6 +38,11 @@ public class animationStateController : MonoBehaviour
         {
             animator.SetBool("isJumping", false);
         }
+
+        /*if(isPunching)
+        {
+            animator.SetTrigger("isPunching");
+        }*/
     }
 
     private bool isHorizontalMove()
@@ -45,5 +53,10 @@ public class animationStateController : MonoBehaviour
     private bool isOnGround()
     {
         return playerMovement.GetGrounded();
+    }
+
+    public void OnAttack()
+    {
+        //isPunching = true;
     }
 }
