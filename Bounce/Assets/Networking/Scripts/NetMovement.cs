@@ -2,7 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetMovement : NetworkBehaviour
+public class NetMovement : MonoBehaviour
 {
     #region Fields
     private Rigidbody playerRb;

@@ -3,14 +3,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetCamera : NetworkBehaviour
+public class NetCamera : MonoBehaviour
 {
     #region Fields
     public Camera playerCamera;
     public NetInputs netInputs;
-    //public InputActionAsset inputActions;
     private InputAction i_look;
-    public Transform playerModel;
     private Vector2 lookingInputs;
     public float sensitivity = 0.1f;
     public float minYAngle = -90f;
@@ -69,8 +67,7 @@ public class NetCamera : NetworkBehaviour
     #region Movement
     public void Look()
     {
-        transform.Rotate(Vector3.up * lookingInputs.x * sensitivity);
-        playerModel.rotation = transform.rotation;
+        transform.root.Rotate(Vector3.up * lookingInputs.x * sensitivity);
 
         lookRotation += (-lookingInputs.y * sensitivity);
         lookRotation = Mathf.Clamp(lookRotation, minYAngle, maxYAngle);
