@@ -8,6 +8,8 @@ public class NetInputController : MonoBehaviour
     #region InputActions
     private InputAction i_move;
     private InputAction i_look;
+    private InputAction i_jump;
+    private InputAction i_attack;
     #endregion
 
     #region Events
@@ -45,8 +47,11 @@ public class NetInputController : MonoBehaviour
     {
         i_move = netInputs.Player.Move;
         i_look = netInputs.Player.Look;
-        netInputs.Player.Jump.performed += Jump;
-        netInputs.Player.Attack.performed += Attack;
+        i_jump = netInputs.Player.Jump;
+        i_attack = netInputs.Player.Attack;
+
+        i_jump.performed += Jump;
+        i_attack.performed += Attack;
 
         i_move.Enable();
         i_look.Enable();

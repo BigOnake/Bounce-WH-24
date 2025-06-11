@@ -7,7 +7,6 @@ public class NetCamera : MonoBehaviour
 {
     #region Fields
     public Camera playerCamera;
-    public NetInputController inputController;
     private Vector2 lookingInputs;
     public float sensitivity = 0.1f;
     public float minYAngle = -90f;
@@ -19,7 +18,6 @@ public class NetCamera : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("<color=green> Camera script is enabled. </color>");
-
         NetInputController.onPlayerLook += ReadInputs;
     }
 
