@@ -35,6 +35,11 @@ public class NetInputController : MonoBehaviour
     private void Awake()
     {
         netInputs = new NetInputs();
+
+        i_move = netInputs.Player.Move;
+        i_look = netInputs.Player.Look;
+        i_jump = netInputs.Player.Jump;
+        i_attack = netInputs.Player.Attack;
     }
 
     private void Update()
@@ -45,11 +50,6 @@ public class NetInputController : MonoBehaviour
 
     private void i_EnableInputs()
     {
-        i_move = netInputs.Player.Move;
-        i_look = netInputs.Player.Look;
-        i_jump = netInputs.Player.Jump;
-        i_attack = netInputs.Player.Attack;
-
         i_jump.performed += Jump;
         i_attack.performed += Attack;
 
@@ -61,6 +61,9 @@ public class NetInputController : MonoBehaviour
 
     private void i_DisableInputs()
     {
+        i_jump.performed -= Jump;
+        i_attack.performed -= Attack;
+
         i_move.Disable();
         i_look.Disable();
         netInputs.Player.Jump.Disable();

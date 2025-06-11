@@ -11,8 +11,10 @@ public class NetAttack : MonoBehaviour
     private MeshRenderer hitboxRenderer;
     private Transform cameraTransform;
     private Vector3 cameraDirection;
+    private Color hitboxColor;
     private Color transperent = new Color(1f, 0f, 0f, 0f);
-    public int hitboxCoolDown;
+    private Color visible = new Color(1f, 0f, 0f, 0.2f);
+    public float hitboxCoolDown;
     #endregion
 
     #region GameEngineLoop
@@ -32,15 +34,20 @@ public class NetAttack : MonoBehaviour
     {
         SetComponents();
 
-        hitboxRenderer.material.color = transperent;
-        Debug.Log($"{hitbox.name} {cameraTransform.name}");
+        hitboxColor = hitboxRenderer.material.color;
+        hitboxColor = transperent;
+        //Debug.Log($"{hitbox.name} {cameraTransform.name}");
+    }
+
+    private void Update()
+    {
+        PositionHitbox();
     }
     #endregion
 
     private void Attack()
     {
         Debug.Log("<color=orange> Attack </color>" + "button is pressed");
-        PositionHitbox();
         StartCoroutine(DisplayHitbox());
     }
 
@@ -53,7 +60,7 @@ public class NetAttack : MonoBehaviour
 
     private IEnumerator DisplayHitbox()
     {
-        hitboxRenderer.material.color = new Color(1f, 0f, 0f, 0.2f);
+        hitboxRenderer.material.color = visible;
         yield return new WaitForSeconds(hitboxCoolDown);
         hitboxRenderer.material.color = transperent;
     }
