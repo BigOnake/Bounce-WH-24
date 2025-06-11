@@ -7,8 +7,7 @@ public class NetCamera : MonoBehaviour
 {
     #region Fields
     public Camera playerCamera;
-    public NetInputs netInputs;
-    private InputAction i_look;
+    public NetInputController inputController;
     private Vector2 lookingInputs;
     public float sensitivity = 0.1f;
     public float minYAngle = -90f;
@@ -21,29 +20,18 @@ public class NetCamera : MonoBehaviour
     {
         Debug.Log("<color=green> Camera script is enabled. </color>");
 
-        i_look = netInputs.Player.Look;
-        netInputs.Player.Look.Enable();
+        NetInputController.onPlayerLook += ReadInputs;
     }
 
     private void OnDisable()
     {
         Debug.Log("<color=red> Camera script is disabled. </color>");
-        netInputs.Player.Look.Disable();
-    }
-
-    private void Awake()
-    {
-        netInputs = new NetInputs();
+        NetInputController.onPlayerLook -= ReadInputs;
     }
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void Update()
-    {
-        ReadInputs();
     }
 
     void LateUpdate()
@@ -53,14 +41,14 @@ public class NetCamera : MonoBehaviour
     #endregion
 
     #region Inputs
-    public void ReadInputs()
+    public void ReadInputs(Vector2 input)
     {
-        lookingInputs = i_look.ReadValue<Vector2>();
+        lookingInputs = input;
 
-        if (i_look.activeControl != null && i_look.activeControl.device is Gamepad)
+        /*if (i_look.activeControl != null && i_look.activeControl.device is Gamepad)
         {
             sensitivity = 3f;
-        }
+        }*/
     }
     #endregion
 

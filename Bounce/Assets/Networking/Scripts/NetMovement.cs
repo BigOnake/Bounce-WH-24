@@ -6,16 +6,11 @@ public class NetMovement : MonoBehaviour
 {
     #region Fields
     private Rigidbody playerRb;
-    public NetInputs netInputs;
-
-    #region InputActions
-    private InputAction i_move;
-    #endregion
 
     private Vector2 movementDirection;
     private Vector3 curVelocity, wishVelocity, acceleration;
     [SerializeField]
-    public Vector3 wishDir;
+    private Vector3 wishDir;
     private Vector3 jumpHeight;
 
     [Header("Movement Values")]
@@ -37,24 +32,20 @@ public class NetMovement : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("<color=green> Movement script is enabled. </color>");
-        i_EnableInputs();
+        NetInputController.onPlayerMove += ReadInputs;
+        NetInputController.onPlayerJump += Jump;
     }
 
     private void OnDisable()
     {
         Debug.Log("<color=red> Movement script is disabled. </color>");
-        i_DisableInputs();
+        NetInputController.onPlayerMove -= ReadInputs;
+        NetInputController.onPlayerJump -= Jump;
     }
 
     private void Awake()
     {
-        netInputs = new NetInputs();
         playerRb = GetComponentInParent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        ReadInputs();
     }
 
     void FixedUpdate()
@@ -64,9 +55,10 @@ public class NetMovement : MonoBehaviour
     #endregion
 
     #region Inputs
-    private void ReadInputs()
+    private void ReadInputs(Vector2 moveInputs)
     {
-        movementDirection = i_move.IsPressed() ? i_move.ReadValue<Vector2>() : movementDirection = Vector2.zero;
+        movementDirection = moveInputs;
+        //Debug.Log("Movement Inputs: " + moveInputs);
     }
 
     private void UpdateInput()
@@ -74,21 +66,6 @@ public class NetMovement : MonoBehaviour
         wishVelocity = new Vector3(movementDirection.x, 0f, movementDirection.y) * speed; // Get desired direction locally (in relation to the player)
         wishDir = wishVelocity.normalized;
         wishVelocity = transform.TransformDirection(wishVelocity); // Transform desired direction from local position into world position
-    }
-
-    private void i_EnableInputs()
-    {
-        i_move = netInputs.Player.Move;
-        i_move.Enable();
-
-        netInputs.Player.Jump.performed += Jump;
-        netInputs.Player.Jump.Enable();
-    }
-
-    private void i_DisableInputs()
-    {
-        i_move.Disable();
-        netInputs.Player.Jump.Disable();
     }
     #endregion
 
@@ -120,7 +97,7 @@ public class NetMovement : MonoBehaviour
     #endregion
 
     #region Jumping
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
         Debug.Log("<color=blue> Jump </color>" + "button is pressed");
         jumpHeight = Vector3.zero;
