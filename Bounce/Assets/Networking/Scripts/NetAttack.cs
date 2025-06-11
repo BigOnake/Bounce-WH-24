@@ -11,10 +11,10 @@ public class NetAttack : MonoBehaviour
     private MeshRenderer hitboxRenderer;
     private Transform cameraTransform;
     private Vector3 cameraDirection;
-    private Color hitboxColor;
-    private Color transperent = new Color(1f, 0f, 0f, 0f);
-    private Color visible = new Color(1f, 0f, 0f, 0.2f);
-    public float hitboxCoolDown;
+    private float transperent = 0f;
+    private float visible = 0.2f;
+    public float attackDuration;
+    private bool isAttacking = false;
     #endregion
 
     #region GameEngineLoop
@@ -33,10 +33,7 @@ public class NetAttack : MonoBehaviour
     private void Awake()
     {
         SetComponents();
-
-        hitboxColor = hitboxRenderer.material.color;
-        hitboxColor = transperent;
-        //Debug.Log($"{hitbox.name} {cameraTransform.name}");
+        SetTransperency(transperent);
     }
 
     private void Update()
@@ -48,7 +45,7 @@ public class NetAttack : MonoBehaviour
     private void Attack()
     {
         Debug.Log("<color=orange> Attack </color>" + "button is pressed");
-        StartCoroutine(DisplayHitbox());
+        PerformAttack();
     }
 
     private void PositionHitbox()
@@ -58,11 +55,24 @@ public class NetAttack : MonoBehaviour
         attackHitbox.transform.position = cameraTransform.position + cameraDirection;
     }
 
-    private IEnumerator DisplayHitbox()
+    private IEnumerator Attacking()
     {
-        hitboxRenderer.material.color = visible;
-        yield return new WaitForSeconds(hitboxCoolDown);
-        hitboxRenderer.material.color = transperent;
+        isAttacking = true;
+        SetTransperency(visible);
+        yield return new WaitForSeconds(attackDuration);
+        isAttacking = false;
+        SetTransperency(transperent);
+    }
+    
+    private void PerformAttack()
+    {
+        StartCoroutine(Attacking());
+    }
+
+    #region Auxiliary Methods
+    public bool GetAttackStatus()
+    {
+        return isAttacking;
     }
 
     private void SetComponents()
@@ -71,4 +81,10 @@ public class NetAttack : MonoBehaviour
         hitboxRenderer = attackHitbox.GetComponent<MeshRenderer>();
         hitbox = attackHitbox.GetComponent<BoxCollider>();
     }
+
+    private void SetTransperency(float a = 0f)
+    {
+        hitboxRenderer.material.color = new Color(1f, 0f, 0f, a);
+    }
+    #endregion
 }

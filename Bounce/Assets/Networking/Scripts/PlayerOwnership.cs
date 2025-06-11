@@ -7,6 +7,7 @@ public class PlayerOwnership : NetworkBehaviour
     public PlayerInput n_PlayerInput;
     public NetMovement n_PlayerMovement;
     public NetCamera n_Camera;
+    public NetAttack n_Attack;
     public Camera cam;
 
     private void Awake()
@@ -14,6 +15,7 @@ public class PlayerOwnership : NetworkBehaviour
         n_PlayerInput.enabled = false;
         n_PlayerMovement.enabled = false;
         n_Camera.enabled = false;
+        n_Attack.enabled = false;
         cam.enabled = false;
     }
 
@@ -26,6 +28,7 @@ public class PlayerOwnership : NetworkBehaviour
             n_PlayerInput.enabled = true;
             n_PlayerMovement.enabled = true;
             n_Camera.enabled = true;
+            n_Attack.enabled = true;
             cam.enabled = true;
         }
     }

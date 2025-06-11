@@ -282,6 +282,7 @@ MonoBehaviour:
   n_PlayerInput: {fileID: 1714530111832741291}
   n_PlayerMovement: {fileID: 1552643594544790492}
   n_Camera: {fileID: 3500673001559196322}
+  n_Attack: {fileID: 3744751577493799332}
   cam: {fileID: 5594847828117141976}
 --- !u!114 &5057960240796109325
 MonoBehaviour:
@@ -465,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackHitbox: {fileID: 2188740593384505154}
-  hitboxCoolDown: 0.5
+  attackDuration: 0.5
 --- !u!1 &3614406911078968213
 GameObject:
   m_ObjectHideFlags: 0
