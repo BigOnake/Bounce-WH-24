@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetAttack : MonoBehaviour
+public class NetAttack : NetworkBehaviour
 {
     #region Fields
     public GameObject attackHitbox;
@@ -45,7 +46,7 @@ public class NetAttack : MonoBehaviour
     private void Attack()
     {
         Debug.Log("<color=orange> Attack </color>" + "button is pressed");
-        PerformAttack();
+        PerformAttackRPC();
     }
 
     private void PositionHitbox()
@@ -63,8 +64,9 @@ public class NetAttack : MonoBehaviour
         isAttacking = false;
         SetTransperency(transperent);
     }
-    
-    private void PerformAttack()
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void PerformAttackRPC()
     {
         StartCoroutine(Attacking());
     }
