@@ -7,13 +7,7 @@ using UnityEngine.InputSystem;
 public class NetAttack : NetworkBehaviour
 {
     #region Fields
-    public GameObject attackHitbox;
-    private BoxCollider hitbox;
-    private MeshRenderer hitboxRenderer;
-    private Transform cameraTransform;
-    private Vector3 cameraDirection;
-    private float transperent = 0f;
-    private float visible = 0.2f;
+    public NetHitbox hitbox;
     public float attackDuration;
     private bool isAttacking = false;
     #endregion
@@ -30,43 +24,25 @@ public class NetAttack : NetworkBehaviour
         Debug.Log("<color=red> Attack script is disabled. </color>");
         NetInputController.onPlayerAttack -= Attack;
     }
-
-    private void Awake()
-    {
-        SetComponents();
-        SetTransperency(transperent);
-    }
-
-    private void Update()
-    {
-        PositionHitbox();
-    }
     #endregion
 
     private void Attack()
     {
         Debug.Log("<color=orange> Attack </color>" + "button is pressed");
-        PerformAttackRPC();
-    }
-
-    private void PositionHitbox()
-    {
-        cameraDirection = cameraTransform.forward;
-        attackHitbox.transform.rotation = Quaternion.LookRotation(cameraDirection);
-        attackHitbox.transform.position = cameraTransform.position + cameraDirection;
+        PerformAttackRpc();
     }
 
     private IEnumerator Attacking()
     {
         isAttacking = true;
-        SetTransperency(visible);
+        hitbox.EnableHitbox();
         yield return new WaitForSeconds(attackDuration);
         isAttacking = false;
-        SetTransperency(transperent);
+        hitbox.DisableHitbox();
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void PerformAttackRPC()
+    private void PerformAttackRpc()
     {
         StartCoroutine(Attacking());
     }
@@ -75,18 +51,6 @@ public class NetAttack : NetworkBehaviour
     public bool GetAttackStatus()
     {
         return isAttacking;
-    }
-
-    private void SetComponents()
-    {
-        cameraTransform = GetComponentInChildren<Camera>().transform;
-        hitboxRenderer = attackHitbox.GetComponent<MeshRenderer>();
-        hitbox = attackHitbox.GetComponent<BoxCollider>();
-    }
-
-    private void SetTransperency(float a = 0f)
-    {
-        hitboxRenderer.material.color = new Color(1f, 0f, 0f, a);
     }
     #endregion
 }

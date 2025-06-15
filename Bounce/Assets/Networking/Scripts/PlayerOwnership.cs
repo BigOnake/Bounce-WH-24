@@ -8,6 +8,7 @@ public class PlayerOwnership : NetworkBehaviour
     public NetMovement n_PlayerMovement;
     public NetCamera n_Camera;
     public NetAttack n_Attack;
+    public NetHitbox n_Hitbox;
     public Camera cam;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class PlayerOwnership : NetworkBehaviour
         n_PlayerMovement.enabled = false;
         n_Camera.enabled = false;
         n_Attack.enabled = false;
+        n_Hitbox.enabled = false;
         cam.enabled = false;
     }
 
@@ -29,6 +31,7 @@ public class PlayerOwnership : NetworkBehaviour
             n_PlayerMovement.enabled = true;
             n_Camera.enabled = true;
             n_Attack.enabled = true;
+            n_Hitbox.enabled = true;
             cam.enabled = true;
         }
     }

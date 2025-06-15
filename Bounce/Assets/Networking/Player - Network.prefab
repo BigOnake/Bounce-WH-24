@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6947564538266810797}
   - component: {fileID: 2771539220588788032}
   - component: {fileID: 4555839541847446186}
+  - component: {fileID: 354406065078857039}
+  - component: {fileID: 1199580802910448280}
   m_Layer: 0
   m_Name: AttackHitbox
   m_TagString: Untagged
@@ -108,6 +110,66 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2188740593384505154}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &354406065078857039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188740593384505154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c98284fad58a8488ef9ac44deb55b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  displayHitbox: 1
+--- !u!114 &1199580802910448280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188740593384505154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
+  AutoOwnerAuthorityTickOffset: 1
+  PositionInterpolationType: 0
+  RotationInterpolationType: 0
+  ScaleInterpolationType: 0
+  PositionLerpSmoothing: 1
+  PositionMaxInterpolationTime: 0.1
+  RotationLerpSmoothing: 1
+  RotationMaxInterpolationTime: 0.1
+  ScaleLerpSmoothing: 1
+  ScaleMaxInterpolationTime: 0.1
+  AuthorityMode: 1
+  TickSyncChildren: 0
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 1
+  SwitchTransformSpaceWhenParented: 0
+  Interpolate: 0
+  SlerpPosition: 0
 --- !u!1 &2429756367777470768
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +345,7 @@ MonoBehaviour:
   n_PlayerMovement: {fileID: 1552643594544790492}
   n_Camera: {fileID: 3500673001559196322}
   n_Attack: {fileID: 3744751577493799332}
+  n_Hitbox: {fileID: 354406065078857039}
   cam: {fileID: 5594847828117141976}
 --- !u!114 &5057960240796109325
 MonoBehaviour:
@@ -465,7 +528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24892fb4e3a7a14188b5c8a048d21ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackHitbox: {fileID: 2188740593384505154}
+  ShowTopMostFoldoutHeaderGroup: 1
+  hitbox: {fileID: 354406065078857039}
   attackDuration: 0.5
 --- !u!1 &3614406911078968213
 GameObject:
