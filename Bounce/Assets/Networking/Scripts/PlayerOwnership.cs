@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerOwnership : NetworkBehaviour
 {
+    private static int playerId = 0;
     public PlayerInput n_PlayerInput;
     public NetMovement n_PlayerMovement;
     public NetCamera n_Camera;
@@ -19,6 +20,7 @@ public class PlayerOwnership : NetworkBehaviour
         n_Attack.enabled = false;
         n_Hitbox.enabled = false;
         cam.enabled = false;
+        transform.name = $"Player {++playerId}" ;
     }
 
     public override void OnNetworkSpawn()
