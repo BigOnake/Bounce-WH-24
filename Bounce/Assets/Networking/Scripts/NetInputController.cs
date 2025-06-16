@@ -62,7 +62,7 @@ public class NetInputController : MonoBehaviour
     private void i_DisableInputs()
     {
         i_jump.performed -= Jump;
-        i_attack.performed -= Attack;
+        i_attack.started -= Attack;
 
         i_move.Disable();
         i_look.Disable();

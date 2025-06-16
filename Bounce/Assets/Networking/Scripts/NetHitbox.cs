@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetHitbox : MonoBehaviour
+public class NetHitbox : NetworkBehaviour
 {
     #region Fields
     private NetAttack attack;
@@ -12,6 +12,7 @@ public class NetHitbox : MonoBehaviour
     private Vector3 cameraDirection;
     private float transperent = 0f;
     private float visible = 0.2f;
+    public float knockMult;
     public bool displayHitbox = true;
     #endregion
 
@@ -24,19 +25,39 @@ public class NetHitbox : MonoBehaviour
 
     private void Update()
     {
-        PositionHitboxRpc();
+        PositionHitbox();
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("<color=green> Hitbox script is enabled. </color>");
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("<color=red> Hitbox script is disabled. </color>");
     }
     #endregion
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!IsOwner)
+        {
+            return;
+        }
+
         if (CheckHitbox(other))
         {
             Debug.Log($"{other.gameObject.name} was hit");
+            /* TODO
+             * Get other object
+             * Call GetKnockbacked method
+             * pass direction in which the player should get knocked
+             */
         }
     }
 
-    private void PositionHitboxRpc()
+    private void PositionHitbox()
     {
         cameraDirection = cameraTransform.forward;
         transform.rotation = Quaternion.LookRotation(cameraDirection);
@@ -74,9 +95,9 @@ public class NetHitbox : MonoBehaviour
     private bool CheckHitbox(Collider other)
     {
         return (
+            other.gameObject != transform.root.gameObject &&
             attack.GetAttackStatus() && 
-            other.tag == "Player" && 
-            other is CapsuleCollider
+            other.tag == "Player"
             );
     }
 }
