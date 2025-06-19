@@ -6,8 +6,6 @@ public class NetMovement : NetworkBehaviour
 {
     #region Fields
     private Rigidbody playerRb;
-    public NetworkVariable<bool> isKnocked = new(false, NetworkVariableReadPermission.Owner, NetworkVariableWritePermission.Server);
-    
 
     private Vector2 movementDirection;
     private Vector3 curVelocity, wishVelocity, acceleration;
@@ -27,6 +25,7 @@ public class NetMovement : NetworkBehaviour
     public float airStrafingMult = 1f;
     private float airStrafe;
     public float downVel = 0.2f;
+    [SerializeField] private float knockBackForce = 10f;
     public bool isGrounded;
     #endregion
 
@@ -129,15 +128,15 @@ public class NetMovement : NetworkBehaviour
         if (playerId == OwnerClientId)
         {
             GetKnocked(direction);
-            Debug.Log($"Client owner: {OwnerClientId}");
-            Debug.Log($"PlayerKnocked: {playerId}");
         }
     }
 
     private void GetKnocked(Vector3 direction)
     {
-        playerRb.AddForce(direction * 5, ForceMode.Impulse);
-        isKnocked.Value = false;
+        playerRb.linearVelocity = Vector3.zero;
+        playerRb.angularVelocity = Vector3.zero;
+
+        playerRb.AddForce(direction * knockBackForce, ForceMode.Impulse);
     }
 
 }

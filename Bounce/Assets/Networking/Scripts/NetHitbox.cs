@@ -12,7 +12,6 @@ public class NetHitbox : NetworkBehaviour
     private Vector3 cameraDirection;
     private float transperent = 0f;
     private float visible = 0.2f;
-    public float knockMult;
     public bool displayHitbox = true;
     #endregion
 
@@ -41,28 +40,39 @@ public class NetHitbox : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if(!IsOwner)
-        {
+        NetworkObject hitNetObj = new();
+
+        if (!attack.GetAttackStatus() || !(hitNetObj = other.GetComponent<NetworkObject>()))
             return;
-        }*/
+        /* Important
+         * Can attack multiple times for the duration of the coroutine in NetAttack.
+         * Logical issues, needs prevention in some way not to overload bandwidth.
+         */
 
-        if (CheckHitbox(other))
-        {
-            Debug.Log($"{other.gameObject.name} was hit");
-            NetMovement otherP = other.gameObject.GetComponentInChildren<NetMovement>();
-            NetworkObject otherPNet = other.gameObject.GetComponent<NetworkObject>();
-            if (otherP)
-                KnockBackPlayer(otherP, other.transform.position, otherPNet.OwnerClientId);
-        }
+        CheckHitboxForPlayer(ref other, ref hitNetObj);
     }
 
-    private void KnockBackPlayer(NetMovement otherP, Vector3 pPos, ulong otherId)
+    #region Knockback
+    private void KnockBackPlayer(NetMovement hitPlayerMovement, Vector3 hitPlayerPosition, ulong hitPlayerId)
     {
-        Debug.Log($"{otherP.gameObject.name} recognized");
-        //otherP.isKnocked.Value = true;
-        Vector3 kbDis = pPos - transform.root.position;
-        otherP.SendKbDirRpc(kbDis, otherId);
+        Debug.Log($"{hitPlayerMovement.gameObject.name} recognized");
+        Vector3 knockBackDir = hitPlayerPosition - transform.root.position; //Get dir from playerA to playerB
+        knockBackDir.y = 0;
+        hitPlayerMovement.SendKbDirRpc(knockBackDir.normalized, hitPlayerId);
     }
+
+    private void CheckHitboxForPlayer(ref Collider col, ref NetworkObject netObj)
+    {
+        if (col.gameObject.tag != "Player")
+            return;
+
+        Debug.Log($"{col.gameObject.name} was hit");
+        NetMovement hitPlayerMovement = col.GetComponentInChildren<NetMovement>(); //Needed for rpc
+
+        if (hitPlayerMovement && netObj)
+            KnockBackPlayer(hitPlayerMovement, col.transform.position, netObj.OwnerClientId);
+    }
+    #endregion
 
     private void PositionHitbox()
     {
@@ -79,6 +89,7 @@ public class NetHitbox : NetworkBehaviour
         hitbox = GetComponent<BoxCollider>();
     }
 
+    #region Auxiliary Methods
     private void SetTransperency(float a = 0f)
     {
         if (displayHitbox)
@@ -98,12 +109,6 @@ public class NetHitbox : NetworkBehaviour
         hitbox.enabled = false;
         SetTransperency(transperent);
     }
+    #endregion
 
-    private bool CheckHitbox(Collider other)
-    {
-        return (
-            attack.GetAttackStatus() && 
-            other.GetComponent<NetworkObject>()
-            );
-    }
 }
