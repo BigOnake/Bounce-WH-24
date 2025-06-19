@@ -17,13 +17,13 @@ public class NetCamera : MonoBehaviour
     #region GameEngineLoop
     private void OnEnable()
     {
-        Debug.Log("<color=green> Camera script is enabled. </color>");
+        //Debug.Log("<color=green> Camera script is enabled. </color>");
         NetInputController.onPlayerLook += ReadInputs;
     }
 
     private void OnDisable()
     {
-        Debug.Log("<color=red> Camera script is disabled. </color>");
+        //Debug.Log("<color=red> Camera script is disabled. </color>");
         NetInputController.onPlayerLook -= ReadInputs;
     }
 

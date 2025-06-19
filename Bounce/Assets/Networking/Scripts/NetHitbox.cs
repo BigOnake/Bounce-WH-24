@@ -30,31 +30,38 @@ public class NetHitbox : NetworkBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("<color=green> Hitbox script is enabled. </color>");
+        //Debug.Log("<color=green> Hitbox script is enabled. </color>");
     }
 
     private void OnDisable()
     {
-        Debug.Log("<color=red> Hitbox script is disabled. </color>");
+        //Debug.Log("<color=red> Hitbox script is disabled. </color>");
     }
     #endregion
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!IsOwner)
+        /*if(!IsOwner)
         {
             return;
-        }
+        }*/
 
         if (CheckHitbox(other))
         {
             Debug.Log($"{other.gameObject.name} was hit");
-            /* TODO
-             * Get other object
-             * Call GetKnockbacked method
-             * pass direction in which the player should get knocked
-             */
+            NetMovement otherP = other.gameObject.GetComponentInChildren<NetMovement>();
+            NetworkObject otherPNet = other.gameObject.GetComponent<NetworkObject>();
+            if (otherP)
+                KnockBackPlayer(otherP, other.transform.position, otherPNet.OwnerClientId);
         }
+    }
+
+    private void KnockBackPlayer(NetMovement otherP, Vector3 pPos, ulong otherId)
+    {
+        Debug.Log($"{otherP.gameObject.name} recognized");
+        //otherP.isKnocked.Value = true;
+        Vector3 kbDis = pPos - transform.root.position;
+        otherP.SendKbDirRpc(kbDis, otherId);
     }
 
     private void PositionHitbox()
@@ -95,9 +102,8 @@ public class NetHitbox : NetworkBehaviour
     private bool CheckHitbox(Collider other)
     {
         return (
-            other.gameObject != transform.root.gameObject &&
             attack.GetAttackStatus() && 
-            other.tag == "Player"
+            other.GetComponent<NetworkObject>()
             );
     }
 }

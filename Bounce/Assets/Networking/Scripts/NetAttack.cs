@@ -15,13 +15,13 @@ public class NetAttack : NetworkBehaviour
     #region GameEngineLoop
     private void OnEnable()
     {
-        Debug.Log("<color=green> Attack script is enabled. </color>");
+        //Debug.Log("<color=green> Attack script is enabled. </color>");
         NetInputController.onPlayerAttack += Attack;
     }
 
     private void OnDisable()
     {
-        Debug.Log("<color=red> Attack script is disabled. </color>");
+        //Debug.Log("<color=red> Attack script is disabled. </color>");
         NetInputController.onPlayerAttack -= Attack;
     }
     #endregion

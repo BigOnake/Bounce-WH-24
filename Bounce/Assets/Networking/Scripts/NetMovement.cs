@@ -2,10 +2,12 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetMovement : MonoBehaviour
+public class NetMovement : NetworkBehaviour
 {
     #region Fields
     private Rigidbody playerRb;
+    public NetworkVariable<bool> isKnocked = new(false, NetworkVariableReadPermission.Owner, NetworkVariableWritePermission.Server);
+    
 
     private Vector2 movementDirection;
     private Vector3 curVelocity, wishVelocity, acceleration;
@@ -31,14 +33,14 @@ public class NetMovement : MonoBehaviour
     #region GameEngineLoop
     private void OnEnable()
     {
-        Debug.Log("<color=green> Movement script is enabled. </color>");
+        //Debug.Log("<color=green> Movement script is enabled. </color>");
         NetInputController.onPlayerMove += ReadInputs;
         NetInputController.onPlayerJump += Jump;
     }
 
     private void OnDisable()
     {
-        Debug.Log("<color=red> Movement script is disabled. </color>");
+        //Debug.Log("<color=red> Movement script is disabled. </color>");
         NetInputController.onPlayerMove -= ReadInputs;
         NetInputController.onPlayerJump -= Jump;
     }
@@ -120,4 +122,22 @@ public class NetMovement : MonoBehaviour
         return isGrounded;
     }
     #endregion
+
+    [Rpc(SendTo.ClientsAndHost)]
+    public void SendKbDirRpc(Vector3 direction, ulong playerId)
+    {
+        if (playerId == OwnerClientId)
+        {
+            GetKnocked(direction);
+            Debug.Log($"Client owner: {OwnerClientId}");
+            Debug.Log($"PlayerKnocked: {playerId}");
+        }
+    }
+
+    private void GetKnocked(Vector3 direction)
+    {
+        playerRb.AddForce(direction * 5, ForceMode.Impulse);
+        isKnocked.Value = false;
+    }
+
 }
