@@ -21,7 +21,7 @@ public class NetMovement : NetworkBehaviour
     [Header("Jump Values")]
     public float jumpForce = 3f;
     public float gravity = -9.8f;
-    [Range(0f, 1f)]
+    [Range(0f, 0.25f)]
     public float airStrafingMult = 1f;
     private float airStrafe;
     public float downVel = 0.2f;
@@ -82,14 +82,7 @@ public class NetMovement : NetworkBehaviour
         acceleration = new Vector3(acceleration.x, 0, acceleration.z); //Dont apply vertical forces
         acceleration = Vector3.ClampMagnitude(acceleration, maxSpeed); // Cap Acceleration
 
-        if (isGrounded)
-        {
-            airStrafe = 1;
-        }
-        else
-        {
-            airStrafe = airStrafingMult;
-        }
+        airStrafe = isGrounded ? 1 : airStrafingMult;
 
         playerRb.AddForce(acceleration * airStrafe, ForceMode.Impulse);
 
