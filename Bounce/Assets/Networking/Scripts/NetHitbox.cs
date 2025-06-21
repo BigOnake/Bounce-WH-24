@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class NetHitbox : NetworkBehaviour
     private float visible = 0.2f;
     public bool displayHitbox = true;
     #endregion
+
+    public static event Action<Vector3> onBallHit;
 
     #region GameEngineLoop
     private void Awake()
@@ -40,9 +43,7 @@ public class NetHitbox : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        NetworkObject hitNetObj = new();
-
-        if (!attack.GetAttackStatus() || !(hitNetObj = other.GetComponent<NetworkObject>()))
+        if (!attack.GetAttackStatus() || !(other.TryGetComponent<NetworkObject>(out NetworkObject hitNetObj)))
             return;
         /* Important
          * Can attack multiple times for the duration of the coroutine in NetAttack.
@@ -50,6 +51,7 @@ public class NetHitbox : NetworkBehaviour
          */
 
         CheckHitboxForPlayer(ref other, ref hitNetObj);
+        CheckHitboxForBall(ref other, ref hitNetObj);
     }
 
     #region Knockback
@@ -71,6 +73,12 @@ public class NetHitbox : NetworkBehaviour
 
         if (hitPlayerMovement && netObj)
             KnockBackPlayer(hitPlayerMovement, col.transform.position, netObj.OwnerClientId);
+    }
+
+    private void CheckHitboxForBall(ref Collider other, ref NetworkObject hitNetObj)
+    {
+        if(other.gameObject.tag == "Ball")
+            onBallHit?.Invoke(transform.forward);
     }
     #endregion
 
