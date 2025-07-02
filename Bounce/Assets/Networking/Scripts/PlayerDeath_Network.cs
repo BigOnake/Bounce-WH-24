@@ -11,12 +11,12 @@ public class PlayerDeath_Network : NetworkBehaviour
      */
 
     [SerializeField] private ParticleSystem deathParticles;
-
     [SerializeField] private AudioClip c_death;
     [SerializeField] private AudioSource s_death;
     private PlayerInput p_input;
     private NetInputController np_input;
     public static event System.Action onPlayerHit;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -26,8 +26,8 @@ public class PlayerDeath_Network : NetworkBehaviour
 
     public void Die()
     {
-            DisableInputs();
-            PlayDeathRpc();
+        DisableInputs();
+        PlayDeathRpc();
     }
 
     private void DisableInputs()
@@ -63,7 +63,7 @@ public class PlayerDeath_Network : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!IsOwner)
+        if (!IsOwner || isDead)
             return;
 
         if (!(collision.gameObject.TryGetComponent<NetworkObject>(out NetworkObject hitNetObj)))
@@ -81,6 +81,7 @@ public class PlayerDeath_Network : NetworkBehaviour
 
         Debug.Log($"{col.gameObject.name} was hit");
         Die();
-        //onPlayerHit?.Invoke();
+        onPlayerHit?.Invoke();
+        isDead = true;
     }
 }
