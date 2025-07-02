@@ -24,11 +24,13 @@ public class NetInputController : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("<color=green> Input script is enabled. </color>");
         i_EnableInputs();
     }
 
     private void OnDisable()
     {
+        Debug.Log("<color=red> Input script is disabled. </color>");
         i_DisableInputs();
     }
    

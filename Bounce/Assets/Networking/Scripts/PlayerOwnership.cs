@@ -6,6 +6,7 @@ public class PlayerOwnership : NetworkBehaviour
 {
     private static int playerId = 0;
     public PlayerInput n_PlayerInput;
+    public NetInputController n_Input;
     public NetMovement n_PlayerMovement;
     public NetCamera n_Camera;
     public NetAttack n_Attack;
@@ -15,6 +16,7 @@ public class PlayerOwnership : NetworkBehaviour
     private void Awake()
     {
         n_PlayerInput.enabled = false;
+        n_Input.enabled = false;
         n_PlayerMovement.enabled = false;
         n_Camera.enabled = false;
         n_Attack.enabled = false;
@@ -30,6 +32,7 @@ public class PlayerOwnership : NetworkBehaviour
         if(IsOwner)
         {
             n_PlayerInput.enabled = true;
+            n_Input.enabled = true;
             n_PlayerMovement.enabled = true;
             n_Camera.enabled = true;
             n_Attack.enabled = true;

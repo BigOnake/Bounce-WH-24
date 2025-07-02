@@ -7,12 +7,12 @@ public class PlayerStateUI_Network : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerDeathDetection_Network.onPlayerHit += DisplayDeathScreen;
+        PlayerDeath_Network.onPlayerHit += DisplayDeathScreen;
     }
 
     private void OnDisable()
     {
-        PlayerDeathDetection_Network.onPlayerHit -= DisplayDeathScreen;
+        PlayerDeath_Network.onPlayerHit -= DisplayDeathScreen;
     }
 
     private void Awake()
