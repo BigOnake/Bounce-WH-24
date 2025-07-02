@@ -9,10 +9,13 @@ public class PlayerDeath_Network : NetworkBehaviour
      * Play death animation / particles
      *
      */
-
+    [SerializeField] private SkinnedMeshRenderer model;
+    private CapsuleCollider bodyCollider;
+    private Rigidbody playerRb;
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private AudioClip c_death;
     [SerializeField] private AudioSource s_death;
+
     private PlayerInput p_input;
     private NetInputController np_input;
     public static event System.Action onPlayerHit;
@@ -22,6 +25,8 @@ public class PlayerDeath_Network : NetworkBehaviour
     {
         p_input = GetComponent<PlayerInput>();
         np_input = GetComponent<NetInputController>();
+        playerRb = GetComponent<Rigidbody>();
+        bodyCollider = GetComponent<CapsuleCollider>();
     }
 
     public void Die()
@@ -54,6 +59,10 @@ public class PlayerDeath_Network : NetworkBehaviour
     {
         PlayDeathAnimation();
         PlayDeathSound();
+        model.enabled = false;
+        bodyCollider.enabled = false;
+        playerRb.useGravity = false;
+        playerRb.isKinematic = true;
     }
 
     private void Despawn()

@@ -5378,6 +5378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  model: {fileID: 4047974323669565149}
+  bodyCollider: {fileID: 5507819478148694513}
   deathParticles: {fileID: 2744398109708747465}
   c_death: {fileID: 8300000, guid: 6f7723a53c2d51b42a74bb90f4cac0c6, type: 3}
   s_death: {fileID: 6728291573172051605}
@@ -6139,6 +6141,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5841640475953043347, guid: 9876fe9f72874114dbbedb200344311d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9876fe9f72874114dbbedb200344311d, type: 3}
       propertyPath: m_Name
       value: PlayerModel
@@ -6151,5 +6157,10 @@ PrefabInstance:
 --- !u!4 &1245703388612718939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9876fe9f72874114dbbedb200344311d, type: 3}
+  m_PrefabInstance: {fileID: 1640183125122193072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4047974323669565149 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5841640475953043347, guid: 9876fe9f72874114dbbedb200344311d, type: 3}
   m_PrefabInstance: {fileID: 1640183125122193072}
   m_PrefabAsset: {fileID: 0}
