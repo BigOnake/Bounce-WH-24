@@ -59,15 +59,15 @@ public class PlayerDeath_Network : NetworkBehaviour
     {
         PlayDeathAnimation();
         PlayDeathSound();
-        model.enabled = false;
-        bodyCollider.enabled = false;
-        playerRb.useGravity = false;
-        playerRb.isKinematic = true;
+        DisableVisuals();
     }
 
-    private void Despawn()
+    private void DisableVisuals()
     {
-        //Invoke event and send it to PlayersManager_Network
+        model.enabled = false;
+        playerRb.useGravity = false;
+        playerRb.isKinematic = true;
+        bodyCollider.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,15 +75,15 @@ public class PlayerDeath_Network : NetworkBehaviour
         if (!IsOwner || isDead)
             return;
 
-        if (!(collision.gameObject.TryGetComponent<NetworkObject>(out NetworkObject hitNetObj)))
+        if (!(collision.gameObject.GetComponent<NetworkObject>()))
             return;
 
         Debug.Log("Its the owner!");
 
-        CheckHitboxForBall(ref collision, ref hitNetObj);
+        CheckHitboxForBall(ref collision);
     }
 
-    private void CheckHitboxForBall(ref Collision col, ref NetworkObject hitNetObj)
+    private void CheckHitboxForBall(ref Collision col)
     {
         if (col.gameObject.tag != "Ball")
             return;
