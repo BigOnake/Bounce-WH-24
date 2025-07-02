@@ -15,10 +15,12 @@ public class PlayerDeath_Network : MonoBehaviour
     [SerializeField] private AudioClip c_death;
     [SerializeField] private AudioSource s_death;
     private PlayerInput p_input;
+    private NetInputController np_input;
 
     private void Awake()
     {
         p_input = GetComponent<PlayerInput>();
+        np_input = GetComponent<NetInputController>();
     }
 
     private void OnEnable()
@@ -33,6 +35,7 @@ public class PlayerDeath_Network : MonoBehaviour
 
     public void Die()
     {
+        np_input.enabled = false;
         p_input.enabled = false;
         PlayDeathAnimation();
         PlayDeathSound();
@@ -45,8 +48,9 @@ public class PlayerDeath_Network : MonoBehaviour
 
     private void PlayDeathAnimation()
     {
-        if(deathParticles)
-            Instantiate(deathParticles, deathParticles.transform.position, Quaternion.identity);
+        if (deathParticles)
+            //Instantiate(deathParticles, deathParticles.transform.position, Quaternion.identity);
+            deathParticles.Play();
     }
 
     private void PlayDeathSound()
