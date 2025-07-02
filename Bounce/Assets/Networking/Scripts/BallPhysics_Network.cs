@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,8 +15,10 @@ public class BallPhysics_Network : NetworkBehaviour
     [SerializeField] private float initialSpeed = 5f;
     [SerializeField] private float maxSpeed = 100f;
     [SerializeField, Range(0.0f, 1.0f)] private float speedGainMult = 0.1f;
-    [SerializeField, Range(0f, 1f)] private float downwardForce = 1f; 
+    [SerializeField, Range(0f, 1f)] private float downwardForce = 1f;
     #endregion
+
+    public static event Action onPlayerHit;
 
     #region GameEngineLoop
     private void OnEnable()
@@ -62,6 +65,23 @@ public class BallPhysics_Network : NetworkBehaviour
         }
 
         currentMoveSpeed = Mathf.Min(currentMoveSpeed, maxSpeed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!(collision.gameObject.TryGetComponent<NetworkObject>(out NetworkObject hitNetObj)))
+            return;
+
+        //CheckHitboxForPlayer(ref collision, ref hitNetObj);
+    }
+
+    private void CheckHitboxForPlayer(ref Collision col, ref NetworkObject netObj)
+    {
+        if (col.gameObject.tag != "Player")
+            return;
+
+        Debug.Log($"{col.gameObject.name} was hit");
+        onPlayerHit.Invoke();
     }
     #endregion
 }
