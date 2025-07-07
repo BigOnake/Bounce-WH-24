@@ -49,6 +49,19 @@ public class NetMovement : NetworkBehaviour
         playerRb = GetComponentInParent<Rigidbody>();
     }
 
+    public override void OnNetworkSpawn()
+    {
+        if(!IsHost)
+        {
+            enabled = false;
+            return;
+        }
+
+        OnServerSpawnPlayer();
+
+        base.OnNetworkSpawn();
+    }
+
     void FixedUpdate()
     {
         HorizontalMovement();
@@ -132,4 +145,9 @@ public class NetMovement : NetworkBehaviour
         playerRb.AddForce(direction * knockBackForce, ForceMode.Impulse);
     }
 
+    private void OnServerSpawnPlayer()
+    {
+        Vector3 spawnPoint = SpawnPoints_Network.Instance.GetSpawnPoint();
+        transform.root.position = spawnPoint;
+    }
 }

@@ -13,7 +13,7 @@ public class BallPhysics_Network : NetworkBehaviour
 
     [Header("Movement")]
     [SerializeField] private float initialSpeed = 5f;
-    [SerializeField] private float maxSpeed = 100f;
+    [SerializeField] private float maxSpeed = 80f;
     [SerializeField, Range(0.0f, 1.0f)] private float speedGainMult = 0.1f;
     [SerializeField, Range(0f, 1f)] private float downwardForce = 1f;
     #endregion
@@ -34,6 +34,13 @@ public class BallPhysics_Network : NetworkBehaviour
     private void Awake()
     {
         ballRb = GetComponent<Rigidbody>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        transform.root.position = SpawnPoints_Network.Instance.GetBallSpawnPoint();
+
+        base.OnNetworkSpawn();
     }
 
     private void FixedUpdate()
