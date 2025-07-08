@@ -23,12 +23,12 @@ public class BallPhysics_Network : NetworkBehaviour
     #region GameEngineLoop
     private void OnEnable()
     {
-        NetHitbox.onBallHit += HitByPlayer;
+        P_Hitbox_Network.onBallHit += HitByPlayer;
     }
 
     private void OnDisable()
     {
-        NetHitbox.onBallHit -= HitByPlayer;
+        P_Hitbox_Network.onBallHit -= HitByPlayer;
     }
 
     private void Awake()

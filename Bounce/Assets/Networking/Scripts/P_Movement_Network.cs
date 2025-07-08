@@ -2,7 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetMovement : NetworkBehaviour
+public class P_Movement_Network : NetworkBehaviour
 {
     #region Fields
     private Rigidbody playerRb;
@@ -15,14 +15,14 @@ public class NetMovement : NetworkBehaviour
 
     [Header("Movement Values")]
     public float displaySpeed;
-    public float speed = 5f;
-    public float maxSpeed = 10f;
+    public float speed = 8f;
+    public float maxSpeed = 15f;
 
     [Header("Jump Values")]
-    public float jumpForce = 3f;
+    public float jumpForce = 10f;
     public float gravity = -9.8f;
     [Range(0f, 0.25f)]
-    public float airStrafingMult = 1f;
+    public float airStrafingMult = 0.1f;
     private float airStrafe;
     public float downVel = 0.2f;
     [SerializeField] private float knockBackForce = 10f;
@@ -53,7 +53,6 @@ public class NetMovement : NetworkBehaviour
     {
         if(!IsHost)
         {
-            enabled = false;
             return;
         }
 

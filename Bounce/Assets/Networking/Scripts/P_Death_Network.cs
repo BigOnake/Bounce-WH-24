@@ -2,7 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerDeath_Network : NetworkBehaviour
+public class P_Death_Network : NetworkBehaviour
 {
     /*
      * TODO: Despawn the player

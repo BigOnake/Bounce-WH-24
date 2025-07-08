@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NetGroundCheck : MonoBehaviour
+public class P_GroundCheck_Network : MonoBehaviour
 {
-    public NetMovement playerController;
+    public P_Movement_Network playerController;
 
     private void OnTriggerEnter(Collider other)
     {

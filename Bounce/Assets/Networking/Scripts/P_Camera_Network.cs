@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetCamera : MonoBehaviour
+public class P_Camera_Network : MonoBehaviour
 {
     #region Fields
     public Camera playerCamera;

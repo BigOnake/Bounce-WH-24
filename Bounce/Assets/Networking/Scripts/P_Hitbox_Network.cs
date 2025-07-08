@@ -2,10 +2,10 @@ using System;
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetHitbox : NetworkBehaviour
+public class P_Hitbox_Network : NetworkBehaviour
 {
     #region Fields
-    private NetAttack attack;
+    private P_Attack_Network attack;
     private BoxCollider hitbox;
     private CapsuleCollider hurtbox;
     private MeshRenderer hitboxRenderer;
@@ -55,7 +55,7 @@ public class NetHitbox : NetworkBehaviour
     }
 
     #region Knockback
-    private void KnockBackPlayer(NetMovement hitPlayerMovement, Vector3 hitPlayerPosition, ulong hitPlayerId)
+    private void KnockBackPlayer(P_Movement_Network hitPlayerMovement, Vector3 hitPlayerPosition, ulong hitPlayerId)
     {
         Debug.Log($"{hitPlayerMovement.gameObject.name} recognized");
         Vector3 knockBackDir = hitPlayerPosition - transform.root.position; //Get dir from playerA to playerB
@@ -69,7 +69,7 @@ public class NetHitbox : NetworkBehaviour
             return;
 
         Debug.Log($"{col.gameObject.name} was hit");
-        NetMovement hitPlayerMovement = col.GetComponentInChildren<NetMovement>(); //Needed for rpc
+        P_Movement_Network hitPlayerMovement = col.GetComponentInChildren<P_Movement_Network>(); //Needed for rpc
 
         if (hitPlayerMovement && netObj)
             KnockBackPlayer(hitPlayerMovement, col.transform.position, netObj.OwnerClientId);
@@ -91,7 +91,7 @@ public class NetHitbox : NetworkBehaviour
 
     private void SetComponents()
     {
-        attack = GetComponentInParent<NetAttack>();
+        attack = GetComponentInParent<P_Attack_Network>();
         cameraTransform = transform.parent.GetComponentInChildren<Camera>().transform;
         hitboxRenderer = GetComponent<MeshRenderer>();
         hitbox = GetComponent<BoxCollider>();

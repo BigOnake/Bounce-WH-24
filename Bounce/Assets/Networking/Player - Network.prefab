@@ -5071,7 +5071,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2188740593384505154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c98284fad58a8488ef9ac44deb55b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cae2e6cafbfb1c4cbfd5f4b29e98fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
@@ -5374,12 +5374,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2429756367777470768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f299117239de0b04d930c48e9d98065e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d175ef8fe79d864e918be8182556347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   model: {fileID: 4047974323669565149}
-  bodyCollider: {fileID: 5507819478148694513}
   deathParticles: {fileID: 2744398109708747465}
   c_death: {fileID: 8300000, guid: 6f7723a53c2d51b42a74bb90f4cac0c6, type: 3}
   s_death: {fileID: 6728291573172051605}
@@ -5592,17 +5591,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3418159339255488867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87a61aee64504eb46afbcf50b9ef0468, type: 3}
+  m_Script: {fileID: 11500000, guid: 88b38ecef069f5c49b6448ab5a540f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   wishDir: {x: 0, y: 0, z: 0}
   displaySpeed: 0
-  speed: 5
-  maxSpeed: 10
+  speed: 10
+  maxSpeed: 15
   jumpForce: 10
   gravity: -9.8
-  airStrafingMult: 0.1
+  airStrafingMult: 0.15
   downVel: 0.2
   knockBackForce: 10
   isGrounded: 0
@@ -5615,7 +5614,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3418159339255488867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc89a6f16e541f459242fc281ce83d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 489d8f31d97c44f4e84c6ab2fe136dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 5594847828117141976}
@@ -5631,12 +5630,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3418159339255488867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b24892fb4e3a7a14188b5c8a048d21ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 87877ccb1b57fc749b403b96e80b49cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   hitbox: {fileID: 354406065078857039}
-  attackDuration: 0.5
+  attackDuration: 0.2
 --- !u!1 &3614406911078968213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5716,7 +5715,7 @@ GameObject:
   - component: {fileID: 4115412165460914718}
   - component: {fileID: 3821799327716258894}
   m_Layer: 0
-  m_Name: TMP - GameOver
+  m_Name: TMP - CenterScreenText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6092,7 +6091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff48c590e143e4b4ea13fa2c51921c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverTxt: {fileID: 3821799327716258894}
+  CenterScreenText: {fileID: 3821799327716258894}
 --- !u!1001 &1640183125122193072
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,16 @@ public class SpawnPoints_Network : MonoBehaviour
     [SerializeField] private List<GameObject> spawnPoints;
     [SerializeField] private GameObject ballSpawnPoint;
 
+    private void OnEnable()
+    {
+        Debug.Log("<color=green> SpawnPoints_Network script is enabled. </color>");
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("<color=red> SpawnPoints_Network script is disabled. </color>");
+    }
+
     private void Awake()
     {
         if (Instance && Instance != this)

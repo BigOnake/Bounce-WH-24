@@ -7,10 +7,10 @@ public class PlayerOwnership : NetworkBehaviour
     private static int playerId = 0;
     public PlayerInput n_PlayerInput;
     public NetInputController n_Input;
-    public NetMovement n_PlayerMovement;
-    public NetCamera n_Camera;
-    public NetAttack n_Attack;
-    public NetHitbox n_Hitbox;
+    public P_Movement_Network n_PlayerMovement;
+    public P_Camera_Network n_Camera;
+    public P_Attack_Network n_Attack;
+    public P_Hitbox_Network n_Hitbox;
     public Camera cam;
 
     private void Awake()

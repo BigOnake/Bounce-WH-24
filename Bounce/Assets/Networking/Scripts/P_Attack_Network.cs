@@ -4,11 +4,11 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NetAttack : NetworkBehaviour
+public class P_Attack_Network : NetworkBehaviour
 {
     #region Fields
-    public NetHitbox hitbox;
-    public float attackDuration;
+    public P_Hitbox_Network hitbox;
+    public float attackDuration = 0.2f;
     private bool isAttacking = false;
     #endregion
 
